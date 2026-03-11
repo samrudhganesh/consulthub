@@ -1,0 +1,1877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ConsultHub — Expert Guidance, Unified</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,500;0,700;1,300;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#080C12;--surface:#0F1520;--card:#141C2A;--card2:#1A2235;--gold:#E8A838;--gold2:#F5C76A;--coral:#E06B45;--teal:#2DD4BF;--purple:#8B5CF6;--text:#EDF2F7;--muted:#7A8BA0;--border:#1E2D42;--border2:#253548;--green:#34D399;--red:#F87171;}
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;min-height:100vh;overflow-x:hidden;}
+.hidden{display:none!important;}
+::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:var(--surface);}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:10px;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:64px;background:rgba(8,12,18,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+.logo{font-family:'Fraunces',serif;font-size:22px;font-weight:700;color:var(--gold);letter-spacing:-0.5px;cursor:pointer;}
+.logo span{color:var(--text);font-weight:300;font-style:italic;}
+.nav-links{display:flex;gap:8px;align-items:center;}
+.nav-links a{color:var(--muted);font-size:14px;font-weight:500;padding:8px 14px;border-radius:8px;cursor:pointer;transition:all .2s;}
+.nav-links a:hover{color:var(--text);background:var(--surface);}
+.btn-nav{background:var(--gold);color:#080C12;font-size:13px;font-weight:700;padding:8px 20px;border-radius:8px;cursor:pointer;border:none;transition:all .2s;}
+.btn-nav:hover{background:var(--gold2);transform:translateY(-1px);}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border-radius:10px;border:none;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;}
+.btn-primary{background:var(--gold);color:#080C12;}.btn-primary:hover{background:var(--gold2);transform:translateY(-1px);box-shadow:0 8px 24px rgba(232,168,56,.3);}
+.btn-secondary{background:var(--card2);color:var(--text);border:1px solid var(--border2);}.btn-secondary:hover{background:var(--border);}
+.btn-ghost{background:transparent;color:var(--muted);border:1px solid var(--border);}.btn-ghost:hover{border-color:var(--border2);color:var(--text);}
+.btn-danger{background:rgba(248,113,113,.15);color:var(--red);border:1px solid rgba(248,113,113,.3);}.btn-danger:hover{background:rgba(248,113,113,.25);}
+.btn-success{background:rgba(52,211,153,.15);color:var(--green);border:1px solid rgba(52,211,153,.3);}.btn-success:hover{background:rgba(52,211,153,.25);}
+.btn-sm{padding:7px 14px;font-size:13px;border-radius:8px;}.btn-xs{padding:5px 10px;font-size:12px;border-radius:6px;}
+.btn:disabled{opacity:.4;cursor:not-allowed;transform:none!important;}
+
+/* LANDING */
+#landing{display:block;}
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:100px 40px 60px;position:relative;overflow:hidden;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(232,168,56,.08) 0%,transparent 70%),radial-gradient(ellipse 60% 40% at 90% 60%,rgba(45,212,191,.05) 0%,transparent 60%);}
+.hero-grid{max-width:1100px;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(232,168,56,.1);border:1px solid rgba(232,168,56,.25);color:var(--gold);font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:6px 14px;border-radius:100px;margin-bottom:24px;}
+.hero-badge::before{content:'✦';font-size:10px;}
+h1{font-family:'Fraunces',serif;font-size:58px;font-weight:700;line-height:1.05;letter-spacing:-2px;margin-bottom:20px;}
+h1 em{font-style:italic;color:var(--gold);}
+.hero-sub{color:var(--muted);font-size:17px;line-height:1.7;margin-bottom:36px;max-width:440px;}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;}
+.hero-stats{display:flex;gap:32px;margin-top:48px;padding-top:40px;border-top:1px solid var(--border);}
+.stat-num{font-family:'Fraunces',serif;font-size:28px;font-weight:700;}
+.stat-label{color:var(--muted);font-size:13px;margin-top:2px;}
+.hero-visual{position:relative;display:flex;align-items:center;justify-content:center;}
+.hero-card-main{background:linear-gradient(135deg,var(--card) 0%,var(--card2) 100%);border:1px solid var(--border2);border-radius:20px;padding:24px;width:300px;box-shadow:0 32px 64px rgba(0,0,0,.5);animation:float 4s ease-in-out infinite;}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+.mini-float{background:var(--card2);border:1px solid var(--border2);border-radius:12px;padding:12px 16px;box-shadow:0 16px 32px rgba(0,0,0,.4);font-size:13px;white-space:nowrap;position:absolute;}
+.fc1{top:-60px;right:-60px;animation:float 3.5s .5s ease-in-out infinite;}
+.fc2{bottom:-50px;left:-70px;animation:float 4.5s 1s ease-in-out infinite;}
+
+/* SECTION */
+.section{padding:100px 40px;max-width:1100px;margin:0 auto;}
+.section-label{text-align:center;color:var(--muted);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;}
+h2{font-family:'Fraunces',serif;font-size:42px;font-weight:700;letter-spacing:-1.5px;text-align:center;margin-bottom:16px;line-height:1.1;}
+h2 em{font-style:italic;color:var(--gold);}
+.section-sub{text-align:center;color:var(--muted);font-size:16px;max-width:520px;margin:0 auto 60px;line-height:1.7;}
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.feat-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;transition:all .3s;}
+.feat-card:hover{border-color:var(--border2);transform:translateY(-4px);box-shadow:0 20px 40px rgba(0,0,0,.3);}
+.feat-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:16px;}
+.feat-title{font-size:16px;font-weight:700;margin-bottom:8px;}
+.feat-desc{color:var(--muted);font-size:14px;line-height:1.6;}
+.consultants-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.cons-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px;text-align:center;cursor:pointer;transition:all .3s;}
+.cons-card:hover{border-color:var(--gold);transform:translateY(-4px);box-shadow:0 16px 32px rgba(232,168,56,.1);}
+.cons-avatar-wrap{display:flex;justify-content:center;margin-bottom:14px;position:relative;}
+.cons-avatar{width:72px;height:72px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:700;}
+.online-dot{position:absolute;bottom:2px;right:calc(50% - 38px);width:12px;height:12px;border-radius:50%;background:var(--green);border:2px solid var(--card);}
+.cta-section{margin:0 40px 100px;background:linear-gradient(135deg,var(--card) 0%,var(--card2) 100%);border:1px solid var(--border2);border-radius:24px;padding:80px 60px;text-align:center;position:relative;overflow:hidden;}
+.cta-section::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:60%;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.8);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:20px;}
+.modal{background:var(--card);border:1px solid var(--border2);border-radius:20px;padding:40px;width:100%;max-width:440px;position:relative;animation:slideUp .3s ease;max-height:90vh;overflow-y:auto;}
+@keyframes slideUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.modal-close{position:absolute;top:16px;right:16px;background:var(--surface);border:1px solid var(--border);color:var(--muted);width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;transition:all .2s;}
+.modal-close:hover{color:var(--text);}
+.modal h3{font-family:'Fraunces',serif;font-size:26px;font-weight:700;margin-bottom:8px;}
+.modal-sub{color:var(--muted);font-size:14px;margin-bottom:28px;}
+.role-select{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:24px;}
+.role-btn{padding:14px 10px;border-radius:10px;border:1px solid var(--border);background:var(--surface);cursor:pointer;text-align:center;transition:all .2s;color:var(--muted);font-size:13px;font-weight:600;font-family:'Plus Jakarta Sans',sans-serif;}
+.role-btn.active{border-color:var(--gold);background:rgba(232,168,56,.1);color:var(--gold);}
+.role-btn .role-icon{font-size:22px;display:block;margin-bottom:6px;}
+.form-group{margin-bottom:16px;}
+.form-label{font-size:13px;font-weight:600;color:var(--muted);margin-bottom:8px;display:block;}
+.form-input{width:100%;background:var(--surface);border:1px solid var(--border);color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;padding:12px 16px;border-radius:10px;outline:none;transition:border .2s;}
+.form-input:focus{border-color:var(--gold);}
+select.form-input option{background:var(--card);}
+.switch-auth{text-align:center;margin-top:16px;color:var(--muted);font-size:13px;}
+.switch-auth a{color:var(--gold);cursor:pointer;font-weight:600;}
+.full-width,.w-full{width:100%;}
+
+/* APP SHELL */
+#app{display:none;min-height:100vh;}
+.app-layout{display:flex;min-height:100vh;}
+.sidebar{width:240px;flex-shrink:0;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:50;overflow-y:auto;}
+.sidebar-logo{padding:20px 20px 16px;font-family:'Fraunces',serif;font-size:20px;font-weight:700;color:var(--gold);border-bottom:1px solid var(--border);cursor:pointer;}
+.sidebar-logo span{color:var(--text);font-weight:300;font-style:italic;}
+.sidebar-user{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;}
+.sidebar-nav{padding:12px 12px;flex:1;}
+.nav-item{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:10px;cursor:pointer;transition:all .2s;color:var(--muted);font-size:14px;font-weight:500;margin-bottom:2px;}
+.nav-item:hover{background:var(--card);color:var(--text);}
+.nav-item.active{background:rgba(232,168,56,.12);color:var(--gold);}
+.nav-item .nav-icon{font-size:17px;width:20px;text-align:center;}
+.nav-badge{background:var(--gold);color:#080C12;border-radius:10px;font-size:10px;font-weight:700;padding:1px 7px;margin-left:auto;}
+.nav-badge-red{background:var(--red);color:#fff;}
+.sidebar-footer{padding:12px;border-top:1px solid var(--border);}
+.role-switcher{display:flex;gap:4px;flex-wrap:wrap;}
+.role-pill{padding:5px 10px;border-radius:20px;font-size:11px;font-weight:700;cursor:pointer;transition:all .2s;border:1px solid transparent;}
+.role-pill:hover{opacity:.8;}
+.main-content{margin-left:240px;flex:1;min-width:0;background:var(--bg);}
+.page-header{padding:24px 32px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.page-title{font-family:'Fraunces',serif;font-size:26px;font-weight:700;}
+.page-sub{color:var(--muted);font-size:14px;margin-top:4px;}
+.page-body{padding:24px 32px;}
+
+/* STAT CARDS */
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px;}
+.stats-grid-3{grid-template-columns:repeat(3,1fr);}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px 22px;}
+.stat-card-label{font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;}
+.stat-card-value{font-family:'Fraunces',serif;font-size:30px;font-weight:700;}
+.stat-card-change{font-size:12px;margin-top:6px;}
+.positive{color:var(--green);}.negative,.text-red{color:var(--red);}.neutral,.text-muted{color:var(--muted);}
+.text-gold{color:var(--gold);}.text-green{color:var(--green);}.text-purple{color:var(--purple);}.text-teal{color:var(--teal);}
+
+/* CARDS */
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;}
+.card-header{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.card-title{font-size:15px;font-weight:700;}
+.card-body{padding:20px;}
+.mb-16{margin-bottom:16px;}.mb-20{margin-bottom:20px;}.mb-24{margin-bottom:24px;}
+.mt-16{margin-top:16px;}.mt-8{margin-top:8px;}
+.gap-8{gap:8px;}.gap-12{gap:12px;}.gap-16{gap:16px;}
+
+/* TABLE */
+.table{width:100%;border-collapse:collapse;}
+.table th{text-align:left;padding:10px 16px;font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.8px;text-transform:uppercase;border-bottom:1px solid var(--border);background:var(--surface);}
+.table td{padding:13px 16px;font-size:14px;border-bottom:1px solid var(--border);}
+.table tr:last-child td{border-bottom:none;}
+.table tbody tr:hover td{background:rgba(255,255,255,.02);}
+
+/* BADGES */
+.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:700;}
+.badge-green{background:rgba(52,211,153,.12);color:var(--green);}
+.badge-gold{background:rgba(232,168,56,.12);color:var(--gold);}
+.badge-red{background:rgba(248,113,113,.12);color:var(--red);}
+.badge-purple{background:rgba(139,92,246,.12);color:var(--purple);}
+.badge-teal{background:rgba(45,212,191,.12);color:var(--teal);}
+.badge-muted{background:var(--surface);color:var(--muted);border:1px solid var(--border);}
+
+/* GRID */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.grid-2-1{display:grid;grid-template-columns:2fr 1fr;gap:20px;}
+
+/* SEARCH & FILTER */
+.search-bar{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:0 16px;height:44px;margin-bottom:20px;}
+.search-bar input{flex:1;background:transparent;border:none;outline:none;color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;}
+.filter-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;}
+.filter-btn{padding:7px 16px;border-radius:8px;font-size:13px;font-weight:600;border:1px solid var(--border);background:var(--surface);color:var(--muted);cursor:pointer;transition:all .2s;font-family:'Plus Jakarta Sans',sans-serif;}
+.filter-btn.active{border-color:var(--gold);color:var(--gold);background:rgba(232,168,56,.08);}
+
+/* CONSULTANT CARDS */
+.cons-browse-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.cons-browse-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px;cursor:pointer;transition:all .3s;}
+.cons-browse-card:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:0 12px 28px rgba(0,0,0,.3);}
+.cons-browse-card.hidden-card{display:none;}
+
+/* AVATAR */
+.avatar{display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0;border-radius:12px;}
+.avatar-xl{width:80px;height:80px;border-radius:20px;font-size:32px;}
+.avatar-lg{width:52px;height:52px;border-radius:14px;font-size:20px;}
+.avatar-md{width:44px;height:44px;border-radius:12px;font-size:18px;}
+.avatar-sm{width:34px;height:34px;border-radius:9px;font-size:13px;}
+.avatar-xs{width:28px;height:28px;border-radius:7px;font-size:11px;}
+
+/* BOOKING */
+.booking-modal{max-width:520px;}
+.slot-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0 16px;}
+.slot-btn{padding:10px 4px;border-radius:8px;text-align:center;border:1px solid var(--border);background:var(--surface);cursor:pointer;font-size:12px;font-weight:600;color:var(--muted);transition:all .2s;font-family:'Plus Jakarta Sans',sans-serif;}
+.slot-btn:hover:not(.booked){border-color:var(--border2);color:var(--text);}
+.slot-btn.selected{border-color:var(--gold);background:rgba(232,168,56,.1);color:var(--gold);}
+.slot-btn.booked{opacity:.3;cursor:not-allowed;text-decoration:line-through;}
+
+/* CHAT */
+.chat-layout{display:grid;grid-template-columns:260px 1fr;border:1px solid var(--border);border-radius:14px;overflow:hidden;height:600px;}
+.chat-sidebar-panel{border-right:1px solid var(--border);background:var(--surface);display:flex;flex-direction:column;}
+.chat-sidebar-header{padding:14px 16px;border-bottom:1px solid var(--border);font-size:14px;font-weight:700;}
+.chat-list{overflow-y:auto;flex:1;}
+.chat-item{padding:12px 14px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .2s;display:flex;gap:10px;align-items:center;}
+.chat-item:hover{background:var(--card);}
+.chat-item.active-chat{background:var(--card);border-left:3px solid var(--gold);}
+.chat-item-name{font-size:13px;font-weight:600;}
+.chat-item-preview{font-size:11px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:1px;max-width:160px;}
+.chat-window{display:flex;flex-direction:column;background:var(--card);}
+.chat-header{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.chat-messages{flex:1;padding:16px;overflow-y:auto;display:flex;flex-direction:column;gap:12px;}
+.msg{max-width:68%;}
+.msg-you{align-self:flex-end;}.msg-them{align-self:flex-start;}
+.msg-bubble{padding:10px 14px;border-radius:12px;font-size:13px;line-height:1.5;}
+.msg-you .msg-bubble{background:var(--gold);color:#080C12;border-radius:12px 12px 3px 12px;font-weight:500;}
+.msg-them .msg-bubble{background:var(--card2);border:1px solid var(--border2);border-radius:12px 12px 12px 3px;}
+.msg-time{font-size:10px;color:var(--muted);margin-top:3px;text-align:right;}
+.chat-input-area{padding:12px 16px;border-top:1px solid var(--border);display:flex;gap:8px;align-items:center;flex-shrink:0;}
+.chat-input{flex:1;background:var(--surface);border:1px solid var(--border);color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;padding:10px 14px;border-radius:10px;outline:none;transition:border .2s;}
+.chat-input:focus{border-color:var(--gold);}
+
+/* CALENDAR */
+.calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;}
+.cal-header-cell{text-align:center;font-size:11px;font-weight:700;color:var(--muted);padding:6px;text-transform:uppercase;}
+.cal-day{aspect-ratio:1;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;font-size:13px;position:relative;min-height:40px;}
+.cal-day:hover:not(.cal-empty){background:var(--card2);}
+.cal-day.cal-today{background:rgba(232,168,56,.15);color:var(--gold);font-weight:700;}
+.cal-day.cal-has-session::after{content:'';position:absolute;bottom:3px;width:4px;height:4px;border-radius:50%;background:var(--gold);}
+.cal-day.cal-selected{background:rgba(232,168,56,.2);border:1px solid var(--gold);}
+.cal-empty{cursor:default;}
+
+/* SESSION ITEMS */
+.session-item{display:flex;gap:12px;align-items:center;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 14px;border-left:3px solid var(--gold);margin-bottom:8px;}
+.session-item.cat-mental{border-left-color:var(--purple);}
+.session-item.cat-nutrition{border-left-color:var(--teal);}
+.session-item.cat-wellness{border-left-color:var(--coral);}
+.session-time{font-size:12px;font-weight:700;color:var(--gold);min-width:65px;}
+
+/* CHARTS */
+.bar-chart{display:flex;flex-direction:column;gap:10px;}
+.bar-row{display:flex;align-items:center;gap:10px;}
+.bar-label{font-size:12px;color:var(--muted);width:90px;text-align:right;flex-shrink:0;}
+.bar-track{flex:1;background:var(--surface);border-radius:6px;height:8px;overflow:hidden;}
+.bar-fill{height:100%;border-radius:6px;transition:width 1.2s ease;}
+.bar-val{font-size:12px;font-weight:600;width:50px;}
+
+/* WEEKLY CHART */
+.week-chart{display:flex;align-items:flex-end;gap:6px;height:80px;padding:0 4px;}
+.week-bar-wrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;}
+.week-bar{width:100%;border-radius:4px 4px 0 0;transition:opacity .2s;cursor:pointer;min-height:4px;}
+.week-bar:hover{opacity:.8;}
+.week-label{font-size:10px;color:var(--muted);}
+
+/* PROGRESS */
+.progress-bar{background:var(--surface);border-radius:6px;height:6px;overflow:hidden;}
+.progress-fill{height:100%;border-radius:6px;background:var(--gold);}
+
+/* TOGGLE SWITCH */
+.toggle-wrap{display:flex;align-items:center;justify-content:space-between;padding:10px 0;}
+.toggle{width:38px;height:22px;border-radius:11px;cursor:pointer;position:relative;transition:background .2s;flex-shrink:0;}
+.toggle.on{background:var(--gold);}
+.toggle.off{background:var(--border2);}
+.toggle-knob{position:absolute;top:3px;width:16px;height:16px;border-radius:50%;background:#080C12;transition:left .2s;}
+.toggle.on .toggle-knob{left:19px;}
+.toggle.off .toggle-knob{left:3px;}
+
+/* PROFILE */
+.profile-header{display:flex;gap:24px;align-items:flex-start;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;margin-bottom:20px;}
+.verified-badge{display:inline-flex;align-items:center;gap:4px;background:rgba(52,211,153,.12);color:var(--green);font-size:11px;font-weight:600;padding:3px 8px;border-radius:6px;}
+.tag{display:inline-block;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:600;}
+
+/* ADMIN ALERT */
+.admin-alert{background:rgba(232,168,56,.08);border:1px solid rgba(232,168,56,.2);border-radius:12px;padding:12px 16px;display:flex;gap:10px;align-items:flex-start;margin-bottom:16px;}
+.admin-alert.danger{background:rgba(248,113,113,.08);border-color:rgba(248,113,113,.2);}
+
+/* DIVIDER */
+.divider{height:1px;background:var(--border);margin:16px 0;}
+.flex{display:flex;}.flex-center{display:flex;align-items:center;}.flex-between{display:flex;align-items:center;justify-content:space-between;}
+.fw-700{font-weight:700;}.fw-600{font-weight:600;}
+.fs-11{font-size:11px;}.fs-12{font-size:12px;}.fs-13{font-size:13px;}.fs-14{font-size:14px;}.fs-15{font-size:15px;}
+.font-serif{font-family:'Fraunces',serif;}
+
+/* TOAST */
+.toast{position:fixed;bottom:24px;right:24px;z-index:9999;background:var(--card2);border:1px solid var(--border2);border-radius:12px;padding:12px 18px;display:flex;gap:10px;align-items:center;box-shadow:0 16px 32px rgba(0,0,0,.5);animation:slideUp .3s ease;max-width:320px;}
+.toast-icon{font-size:18px;}.toast-msg{font-size:13px;font-weight:500;}
+
+/* EMPTY STATE */
+.empty-state{text-align:center;padding:60px 20px;color:var(--muted);}
+.empty-icon{font-size:48px;margin-bottom:12px;}
+.empty-text{font-size:14px;}
+
+/* INLINE FORM */
+.inline-form{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:16px;}
+
+/* RATING STARS */
+.stars{color:var(--gold);font-size:12px;letter-spacing:1px;}
+.rating-row{display:flex;align-items:center;gap:5px;margin-top:3px;}
+
+/* PRICE */
+.price-big{font-family:'Fraunces',serif;font-size:22px;font-weight:700;color:var(--gold);}
+.price-big span{font-size:12px;font-family:'Plus Jakarta Sans',sans-serif;color:var(--muted);font-weight:400;}
+
+@media(max-width:900px){.cons-browse-grid{grid-template-columns:1fr 1fr;}.stats-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:768px){.hero-grid{grid-template-columns:1fr;}.hero-visual{display:none;}.features-grid{grid-template-columns:1fr 1fr;}.consultants-grid{grid-template-columns:1fr 1fr;}.grid-2{grid-template-columns:1fr;}.grid-2-1{grid-template-columns:1fr;}.grid-3{grid-template-columns:1fr 1fr;}}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════ LANDING ══════════════════════════════════════ -->
+<div id="landing">
+  <nav>
+    <div class="logo" onclick="scrollTop()">Consult<span>Hub</span></div>
+    <div class="nav-links">
+      <a onclick="smoothScroll('sec-features')">Features</a>
+      <a onclick="smoothScroll('sec-consultants')">Consultants</a>
+      <a onclick="smoothScroll('sec-pricing')">Pricing</a>
+      <button class="btn-nav" onclick="openAuth('login')">Sign In</button>
+    </div>
+  </nav>
+  <section class="hero">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-badge">Now Live — 200+ Expert Consultants</div>
+        <h1>Expert guidance,<br><em>unified.</em></h1>
+        <p class="hero-sub">Connect with vetted consultants in health, astrology, nutrition, mental wellness & more. One platform, zero friction, real results.</p>
+        <div class="hero-btns">
+          <button class="btn btn-primary" onclick="openAuth('signup')">Get Started Free →</button>
+          <button class="btn btn-secondary" onclick="quickLogin('customer')">🎭 Demo Customer</button>
+        </div>
+        <div class="hero-stats">
+          <div><div class="stat-num">12K+</div><div class="stat-label">Happy Clients</div></div>
+          <div><div class="stat-num">4.8★</div><div class="stat-label">Avg. Rating</div></div>
+          <div><div class="stat-num">98%</div><div class="stat-label">Show Rate</div></div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-card-main">
+          <div style="display:flex;gap:12px;align-items:center;margin-bottom:14px;">
+            <div class="avatar avatar-lg" style="background:linear-gradient(135deg,#E8A838,#F5C76A);color:#080C12;">DR</div>
+            <div>
+              <div style="font-size:15px;font-weight:700;">Dr. Riya Sharma</div>
+              <div style="font-size:12px;color:var(--muted);">Mental Health • 6 yrs</div>
+              <div class="rating-row"><span class="stars">★★★★★</span><span style="font-size:12px;color:var(--muted);">4.9</span></div>
+            </div>
+          </div>
+          <div class="verified-badge" style="margin-bottom:12px;">✓ Verified Expert</div>
+          <div style="background:var(--bg);border-radius:10px;padding:12px;font-size:12px;">
+            <div style="font-weight:700;margin-bottom:6px;">Next Available</div>
+            <div style="display:flex;gap:6px;">
+              <span style="background:var(--card2);padding:4px 10px;border-radius:6px;font-size:11px;font-weight:700;">2:00 PM</span>
+              <span style="background:rgba(232,168,56,.15);border:1px solid rgba(232,168,56,.4);padding:4px 10px;border-radius:6px;font-size:11px;font-weight:700;color:var(--gold);">4:00 PM</span>
+              <span style="background:var(--card2);padding:4px 10px;border-radius:6px;font-size:11px;font-weight:700;">6:30 PM</span>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-top:16px;">
+            <div class="price-big">₹800<span>/session</span></div>
+            <button class="btn btn-primary btn-sm" onclick="openAuth('signup')">Book Now</button>
+          </div>
+        </div>
+        <div class="mini-float fc1"><div style="display:flex;align-items:center;gap:8px;"><span style="font-size:16px;">💬</span><div><div style="font-size:12px;font-weight:700;">Session just ended</div><div style="font-size:11px;color:var(--muted);">Riya left a note for you</div></div></div></div>
+        <div class="mini-float fc2"><div style="display:flex;align-items:center;gap:8px;"><span style="font-size:16px;">📈</span><div><div style="font-size:12px;font-weight:700;color:var(--green);">+₹12,400 earned</div><div style="font-size:11px;color:var(--muted);">This week</div></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <div id="sec-features">
+  <div class="section" style="padding-top:60px;">
+    <div class="section-label">Everything You Need</div>
+    <h2>Built for <em>every role</em></h2>
+    <p class="section-sub">Three tailored experiences that work together seamlessly.</p>
+    <div class="features-grid">
+      <div class="feat-card"><div class="feat-icon" style="background:rgba(232,168,56,.1);">🔍</div><div class="feat-title">Smart Discovery</div><div class="feat-desc">AI-powered recommendations based on your goals, preferences, and past sessions.</div></div>
+      <div class="feat-card"><div class="feat-icon" style="background:rgba(45,212,191,.1);">📅</div><div class="feat-title">Instant Booking</div><div class="feat-desc">Real-time availability. Book in 3 clicks. Automated reminders reduce no-shows to under 5%.</div></div>
+      <div class="feat-card"><div class="feat-icon" style="background:rgba(139,92,246,.1);">🔐</div><div class="feat-title">Encrypted Sessions</div><div class="feat-desc">End-to-end encrypted chat and video. HIPAA & GDPR compliant.</div></div>
+      <div class="feat-card"><div class="feat-icon" style="background:rgba(224,107,69,.1);">📊</div><div class="feat-title">Real-time Analytics</div><div class="feat-desc">Consultants track earnings, retention & peak times. Admins monitor platform health live.</div></div>
+      <div class="feat-card"><div class="feat-icon" style="background:rgba(52,211,153,.1);">💰</div><div class="feat-title">Transparent Payments</div><div class="feat-desc">Only 15% platform fee. Instant payouts via Razorpay. Full financial dashboard.</div></div>
+      <div class="feat-card"><div class="feat-icon" style="background:rgba(232,168,56,.1);">🤖</div><div class="feat-title">AI Moderation</div><div class="feat-desc">Automated content compliance scanning. AI chatbot support. Smart category management.</div></div>
+    </div>
+  </div>
+  </div>
+
+  <div id="sec-consultants">
+  <div class="section" style="padding-top:40px;">
+    <div class="section-label">Top Experts</div>
+    <h2>Meet our <em>consultants</em></h2>
+    <p class="section-sub">Verified experts across every category you need.</p>
+    <div class="consultants-grid">
+      <div class="cons-card" onclick="openAuth('signup')"><div class="cons-avatar-wrap"><div class="cons-avatar" style="background:linear-gradient(135deg,#E8A838,#F5C76A);color:#080C12;">RS</div><div class="online-dot"></div></div><div style="font-size:15px;font-weight:700;">Dr. Riya Sharma</div><div style="font-size:12px;color:var(--muted);margin:4px 0 8px;">🧠 Mental Health</div><div class="rating-row" style="justify-content:center;margin-bottom:10px;"><span class="stars">★★★★★</span><span class="text-muted fs-12">4.9</span></div><div style="font-family:'Fraunces',serif;font-size:17px;font-weight:700;color:var(--gold);">₹800/hr</div></div>
+      <div class="cons-card" onclick="openAuth('signup')"><div class="cons-avatar-wrap"><div class="cons-avatar" style="background:linear-gradient(135deg,#2DD4BF,#5EEAD4);color:#080C12;">AK</div><div class="online-dot"></div></div><div style="font-size:15px;font-weight:700;">Arjun Kapoor</div><div style="font-size:12px;color:var(--muted);margin:4px 0 8px;">🌟 Astrology</div><div class="rating-row" style="justify-content:center;margin-bottom:10px;"><span class="stars">★★★★★</span><span class="text-muted fs-12">4.8</span></div><div style="font-family:'Fraunces',serif;font-size:17px;font-weight:700;color:var(--gold);">₹600/hr</div></div>
+      <div class="cons-card" onclick="openAuth('signup')"><div class="cons-avatar-wrap"><div class="cons-avatar" style="background:linear-gradient(135deg,#E06B45,#F59E6B);color:#fff;">PM</div></div><div style="font-size:15px;font-weight:700;">Priya Mehta</div><div style="font-size:12px;color:var(--muted);margin:4px 0 8px;">🥗 Nutrition</div><div class="rating-row" style="justify-content:center;margin-bottom:10px;"><span class="stars">★★★★☆</span><span class="text-muted fs-12">4.7</span></div><div style="font-family:'Fraunces',serif;font-size:17px;font-weight:700;color:var(--gold);">₹700/hr</div></div>
+      <div class="cons-card" onclick="openAuth('signup')"><div class="cons-avatar-wrap"><div class="cons-avatar" style="background:linear-gradient(135deg,#8B5CF6,#A78BFA);color:#fff;">VN</div><div class="online-dot"></div></div><div style="font-size:15px;font-weight:700;">Vikram Nair</div><div style="font-size:12px;color:var(--muted);margin:4px 0 8px;">💪 Wellness</div><div class="rating-row" style="justify-content:center;margin-bottom:10px;"><span class="stars">★★★★★</span><span class="text-muted fs-12">4.9</span></div><div style="font-family:'Fraunces',serif;font-size:17px;font-weight:700;color:var(--gold);">₹500/hr</div></div>
+    </div>
+  </div>
+  </div>
+
+  <div id="sec-pricing">
+  <div class="section" style="padding-top:40px;">
+    <div class="section-label">Simple Pricing</div>
+    <h2>Start free, <em>scale freely</em></h2>
+    <p class="section-sub">No monthly fees. Pay only when you book. Upgrade for unlimited access.</p>
+    <div class="grid-3" style="max-width:780px;margin:0 auto;">
+      <div class="card" style="padding:28px;"><div style="font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;">Free</div><div class="font-serif" style="font-size:36px;font-weight:700;">₹0<span style="font-size:14px;font-family:'Plus Jakarta Sans';color:var(--muted);font-weight:400;">/mo</span></div><div style="color:var(--muted);font-size:13px;margin:10px 0 18px;">Pay per session only</div><div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px;font-size:13px;"><div>✓ 3 sessions/month</div><div>✓ Chat with consultants</div><div>✓ Session history</div><div style="color:var(--muted);">✗ Priority booking</div></div><button class="btn btn-ghost w-full" style="justify-content:center;" onclick="openAuth('signup')">Get Started</button></div>
+      <div class="card" style="padding:28px;border-color:var(--gold);position:relative;"><div style="position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--gold);color:#080C12;font-size:10px;font-weight:700;padding:4px 14px;border-radius:20px;white-space:nowrap;">MOST POPULAR</div><div style="font-size:12px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;">Pro</div><div class="font-serif" style="font-size:36px;font-weight:700;color:var(--gold);">₹999<span style="font-size:14px;font-family:'Plus Jakarta Sans';color:var(--muted);font-weight:400;">/mo</span></div><div style="color:var(--muted);font-size:13px;margin:10px 0 18px;">Unlimited consultations</div><div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px;font-size:13px;"><div>✓ Unlimited sessions</div><div>✓ Priority booking</div><div>✓ Exclusive webinars</div><div>✓ AI recommendations</div></div><button class="btn btn-primary w-full" style="justify-content:center;" onclick="openAuth('signup')">Start Pro Trial</button></div>
+      <div class="card" style="padding:28px;"><div style="font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;">Enterprise</div><div class="font-serif" style="font-size:36px;font-weight:700;">Custom</div><div style="color:var(--muted);font-size:13px;margin:10px 0 18px;">For teams & organizations</div><div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px;font-size:13px;"><div>✓ All Pro features</div><div>✓ Team management</div><div>✓ Custom integrations</div><div>✓ Dedicated support</div></div><button class="btn btn-ghost w-full" style="justify-content:center;" onclick="openAuth('signup')">Contact Sales</button></div>
+    </div>
+  </div>
+  </div>
+
+  <div class="cta-section">
+    <h2 style="margin-bottom:12px;">Ready to transform<br>your <em>consultation experience?</em></h2>
+    <p style="color:var(--muted);margin-bottom:32px;font-size:16px;">Join 12,000+ users already on ConsultHub.</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <button class="btn btn-primary" onclick="openAuth('signup')" style="font-size:15px;padding:12px 28px;">Create Free Account</button>
+      <button class="btn btn-secondary" onclick="quickLogin('consultant')">💼 Demo Consultant</button>
+      <button class="btn btn-secondary" onclick="quickLogin('admin')">⚙️ Demo Admin</button>
+    </div>
+  </div>
+  <footer style="padding:32px 40px;text-align:center;border-top:1px solid var(--border);color:var(--muted);font-size:13px;">
+    <div class="logo" style="margin-bottom:8px;display:inline-block;">Consult<span>Hub</span></div>
+    <p style="margin-top:6px;">© 2026 ConsultHub · Built at ₹0 · Supabase · Vercel · Razorpay · Daily.co</p>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════════ AUTH MODAL ══════════════════════════════════════ -->
+<div class="modal-overlay hidden" id="authModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('authModal')">✕</button>
+    <h3 id="authTitle">Welcome back</h3>
+    <p class="modal-sub" id="authSub">Sign in to your ConsultHub account</p>
+    <div class="role-select hidden" id="signupRoles">
+      <button class="role-btn active" onclick="pickRole('customer',this)"><span class="role-icon">👤</span>Customer</button>
+      <button class="role-btn" onclick="pickRole('consultant',this)"><span class="role-icon">💼</span>Consultant</button>
+      <button class="role-btn" onclick="pickRole('admin',this)"><span class="role-icon">⚙️</span>Admin</button>
+    </div>
+    <div class="hidden" id="nameField"><div class="form-group"><label class="form-label">Full Name</label><input class="form-input" id="nameInput" placeholder="Your full name"></div></div>
+    <div class="form-group"><label class="form-label">Email Address</label><input class="form-input" type="email" id="emailInput" value="demo@consulthub.in"></div>
+    <div class="form-group"><label class="form-label">Password</label><input class="form-input" type="password" id="passInput" value="demo1234"></div>
+    <button class="btn btn-primary w-full" style="justify-content:center;" id="authSubmitBtn" onclick="doAuth()">Sign In →</button>
+    <div class="switch-auth" id="authToggleText">Don't have an account? <a onclick="toggleAuthMode()">Sign up free</a></div>
+    <div class="divider"></div>
+    <div style="text-align:center;font-size:12px;color:var(--muted);margin-bottom:10px;">Quick Demo Access</div>
+    <div style="display:flex;gap:6px;">
+      <button class="btn btn-ghost btn-sm" style="flex:1;justify-content:center;" onclick="quickLogin('customer')">👤 Customer</button>
+      <button class="btn btn-ghost btn-sm" style="flex:1;justify-content:center;" onclick="quickLogin('consultant')">💼 Consultant</button>
+      <button class="btn btn-ghost btn-sm" style="flex:1;justify-content:center;" onclick="quickLogin('admin')">⚙️ Admin</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════ BOOKING MODAL ══════════════════════════════════════ -->
+<div class="modal-overlay hidden" id="bookingModal">
+  <div class="modal booking-modal">
+    <button class="modal-close" onclick="closeModal('bookingModal')">✕</button>
+    <h3>Book a Session</h3>
+    <p class="modal-sub" id="bk_sub">Choose your preferred slot</p>
+    <div style="display:flex;gap:14px;align-items:center;background:var(--surface);border-radius:12px;padding:14px;margin-bottom:18px;">
+      <div class="avatar avatar-lg" id="bk_avatar" style="background:linear-gradient(135deg,#E8A838,#F5C76A);color:#080C12;">DR</div>
+      <div>
+        <div class="fw-700 fs-15" id="bk_name">Dr. Riya Sharma</div>
+        <div class="text-muted fs-13" id="bk_cat">Mental Health</div>
+        <div class="rating-row"><span class="stars">★★★★★</span><span class="text-muted fs-12" id="bk_rating">4.9 · 234 sessions</span></div>
+      </div>
+    </div>
+    <div class="form-group"><label class="form-label">Select Date</label><input class="form-input" type="date" id="bk_date"></div>
+    <label class="form-label">Available Time Slots</label>
+    <div class="slot-grid" id="bk_slots"></div>
+    <div class="form-group"><label class="form-label">Session Type</label>
+      <select class="form-input" id="bk_type"><option value="video">📹 Video Call (60 min)</option><option value="chat">💬 Chat Session (45 min)</option><option value="voice">🎙 Voice Call (45 min)</option></select>
+    </div>
+    <div class="form-group"><label class="form-label">Pre-session Notes <span style="color:var(--muted)">(optional)</span></label><textarea class="form-input" rows="2" id="bk_notes" placeholder="What would you like to discuss?"></textarea></div>
+    <div style="background:var(--surface);border-radius:10px;padding:14px;margin-bottom:14px;">
+      <div class="flex-between fs-13"><span class="text-muted">Session fee</span><span id="bk_fee">₹800</span></div>
+      <div class="flex-between fs-13" style="margin-top:6px;"><span class="text-muted">Platform fee</span><span class="text-green">₹0 (Free tier)</span></div>
+      <div class="divider" style="margin:10px 0;"></div>
+      <div class="flex-between fw-700"><span>Total</span><span class="text-gold font-serif fs-15" id="bk_total">₹800</span></div>
+    </div>
+    <button class="btn btn-primary w-full" style="justify-content:center;" id="bk_confirm" onclick="confirmBooking()">Confirm & Pay →</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════ REVIEW MODAL ══════════════════════════════════════ -->
+<div class="modal-overlay hidden" id="reviewModal">
+  <div class="modal" style="max-width:400px;">
+    <button class="modal-close" onclick="closeModal('reviewModal')">✕</button>
+    <h3>Leave a Review</h3>
+    <p class="modal-sub" id="rev_sub">How was your session?</p>
+    <div style="display:flex;gap:12px;margin-bottom:16px;" id="starRating">
+      <span style="font-size:28px;cursor:pointer;" onclick="setRating(1)" id="s1">☆</span>
+      <span style="font-size:28px;cursor:pointer;" onclick="setRating(2)" id="s2">☆</span>
+      <span style="font-size:28px;cursor:pointer;" onclick="setRating(3)" id="s3">☆</span>
+      <span style="font-size:28px;cursor:pointer;" onclick="setRating(4)" id="s4">☆</span>
+      <span style="font-size:28px;cursor:pointer;" onclick="setRating(5)" id="s5">☆</span>
+    </div>
+    <div class="form-group"><label class="form-label">Your Feedback</label><textarea class="form-input" rows="3" id="rev_text" placeholder="Share your experience..."></textarea></div>
+    <button class="btn btn-primary w-full" style="justify-content:center;" onclick="submitReview()">Submit Review</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════ APP ══════════════════════════════════════ -->
+<div id="app">
+  <div class="app-layout">
+    <aside class="sidebar">
+      <div class="sidebar-logo" onclick="goToLanding()">Consult<span>Hub</span></div>
+      <div class="sidebar-user">
+        <div class="avatar avatar-md" id="sb_avatar" style="background:linear-gradient(135deg,#E8A838,#F5C76A);color:#080C12;">AS</div>
+        <div><div class="fw-700 fs-14" id="sb_name">Ananya Singh</div><div style="font-size:11px;" class="text-muted" id="sb_role">Customer</div></div>
+      </div>
+      <nav class="sidebar-nav" id="sb_nav"></nav>
+      <div class="sidebar-footer">
+        <div style="font-size:10px;font-weight:700;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;">Switch Demo</div>
+        <div class="role-switcher">
+          <div class="role-pill" style="background:rgba(232,168,56,.1);color:var(--gold);" onclick="quickLogin('customer')">👤 Customer</div>
+          <div class="role-pill" style="background:rgba(45,212,191,.1);color:var(--teal);" onclick="quickLogin('consultant')">💼 Consult.</div>
+          <div class="role-pill" style="background:rgba(139,92,246,.1);color:var(--purple);" onclick="quickLogin('admin')">⚙️ Admin</div>
+        </div>
+      </div>
+    </aside>
+    <main class="main-content" id="main_content"></main>
+  </div>
+</div>
+
+<div class="toast hidden" id="toast"><span class="toast-icon" id="toast_icon">✅</span><span class="toast-msg" id="toast_msg"></span></div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════════
+// CENTRAL STATE — single source of truth
+// ═══════════════════════════════════════════════════════════════════
+const STATE = {
+  role: 'customer',
+  page: '',
+  authMode: 'login',
+  selectedRole: 'customer',
+  selectedRating: 0,
+  reviewingSessionId: null,
+  bookingCons: null,
+  selectedSlot: null,
+  activeChatId: 0,
+  activeConsChatId: 0,
+  calSelectedDay: 5,
+  // User preferences (toggles)
+  prefs: { emailNotifs: true, pushNotifs: true, sessionReminders: true, smsAlerts: false },
+  // Profile data (editable)
+  profile: { customer: { name: 'Ananya Singh', email: 'ananya@mail.com', phone: '+91 98765 43210', city: 'Mumbai, India' },
+    consultant: { name: 'Dr. Riya Sharma', specialty: 'Mental Health — Anxiety & Stress Management', bio: 'Specializing in anxiety, depression, and CBT. Helping clients build resilience and coping strategies.', rate: 800 } },
+  // Dynamic data
+  consultants: [
+    {id:1,name:'Dr. Riya Sharma',init:'RS',spec:'Mental Health',cat:'mental',subcat:'Anxiety & Stress',rating:4.9,reviews:234,rate:800,exp:'6 yrs',grad:'linear-gradient(135deg,#E8A838,#F5C76A)',tc:'#080C12',online:true,tags:['Anxiety','Depression','CBT','Relationships'],sessions:1247,status:'active'},
+    {id:2,name:'Arjun Kapoor',init:'AK',spec:'Astrology',cat:'astrology',subcat:'Vedic & Western',rating:4.8,reviews:189,rate:600,exp:'8 yrs',grad:'linear-gradient(135deg,#2DD4BF,#5EEAD4)',tc:'#080C12',online:true,tags:['Vedic','Kundali','Numerology','Tarot'],sessions:986,status:'active'},
+    {id:3,name:'Priya Mehta',init:'PM',spec:'Nutrition',cat:'nutrition',subcat:'Weight Management',rating:4.7,reviews:156,rate:700,exp:'5 yrs',grad:'linear-gradient(135deg,#E06B45,#F59E6B)',tc:'#fff',online:false,tags:['Diet Plans','Weight Loss','Gut Health','PCOS'],sessions:723,status:'active'},
+    {id:4,name:'Vikram Nair',init:'VN',spec:'Wellness',cat:'wellness',subcat:'Mind-Body Balance',rating:4.9,reviews:312,rate:500,exp:'10 yrs',grad:'linear-gradient(135deg,#8B5CF6,#A78BFA)',tc:'#fff',online:true,tags:['Meditation','Yoga','Sleep','Stress'],sessions:2134,status:'active'},
+    {id:5,name:'Meera Joshi',init:'MJ',spec:'Career Coach',cat:'career',subcat:'Professional Growth',rating:4.6,reviews:98,rate:900,exp:'7 yrs',grad:'linear-gradient(135deg,#34D399,#6EE7B7)',tc:'#080C12',online:false,tags:['Leadership','Interview','Resume','Strategy'],sessions:445,status:'active'},
+    {id:6,name:'Rahul Das',init:'RD',spec:'Finance',cat:'finance',subcat:'Personal Finance',rating:4.7,reviews:201,rate:1200,exp:'12 yrs',grad:'linear-gradient(135deg,#F59E0B,#FCD34D)',tc:'#080C12',online:true,tags:['Investments','Tax','Retirement','Stocks'],sessions:889,status:'active'},
+  ],
+  categories: [
+    {id:1,name:'Mental Health',icon:'🧠',count:34,color:'#8B5CF6',active:true},
+    {id:2,name:'Astrology',icon:'🌟',count:28,color:'#E8A838',active:true},
+    {id:3,name:'Nutrition',icon:'🥗',count:19,color:'#34D399',active:true},
+    {id:4,name:'Health & Wellness',icon:'💪',count:45,color:'#2DD4BF',active:true},
+    {id:5,name:'Career Coaching',icon:'💼',count:22,color:'#E06B45',active:true},
+    {id:6,name:'Finance',icon:'📈',count:16,color:'#F87171',active:true},
+  ],
+  customerSessions: [
+    {id:1,consId:1,date:'Mar 11, 2026',time:'4:00 PM',status:'upcoming',topic:'Anxiety Management',type:'video',fee:800,reviewed:false},
+    {id:2,consId:2,date:'Feb 28, 2026',time:'6:00 PM',status:'completed',topic:'Annual Chart Reading',type:'video',fee:600,reviewed:true,rating:5},
+    {id:3,consId:3,date:'Feb 22, 2026',time:'11:00 AM',status:'completed',topic:'Diet Plan Review',type:'chat',fee:700,reviewed:false},
+    {id:4,consId:4,date:'Feb 15, 2026',time:'7:30 PM',status:'completed',topic:'Stress & Sleep',type:'voice',fee:500,reviewed:true,rating:5},
+  ],
+  consultantSessions: [
+    {id:1,client:'Ananya S.',init:'AS',time:'10:00 AM',topic:'Anxiety Management',status:'completed',cat:'cat-mental',fee:800},
+    {id:2,client:'Rohan M.',init:'RM',time:'12:30 PM',topic:'Relationship Stress',status:'completed',cat:'cat-mental',fee:800},
+    {id:3,client:'Kavya P.',init:'KP',time:'3:00 PM',topic:'Work Burnout',status:'upcoming',cat:'cat-mental',fee:800},
+    {id:4,client:'Dev K.',init:'DK',time:'5:30 PM',topic:'Depression Support',status:'upcoming',cat:'cat-mental',fee:800},
+  ],
+  adminUsers: [
+    {id:1,name:'Ananya Singh',email:'ananya@mail.com',role:'customer',joined:'Jan 12, 2026',status:'active',sessions:14,plan:'pro'},
+    {id:2,name:'Dr. Riya Sharma',email:'riya@mail.com',role:'consultant',joined:'Dec 5, 2025',status:'active',sessions:1247,cat:'Mental Health'},
+    {id:3,name:'Rohan Mehta',email:'rohan@mail.com',role:'customer',joined:'Feb 3, 2026',status:'active',sessions:7,plan:'free'},
+    {id:4,name:'Arjun Kapoor',email:'arjun@mail.com',role:'consultant',joined:'Nov 18, 2025',status:'active',sessions:986,cat:'Astrology'},
+    {id:5,name:'Priya Patel',email:'priya.p@mail.com',role:'customer',joined:'Feb 20, 2026',status:'suspended',sessions:2,plan:'free'},
+    {id:6,name:'Vikram Nair',email:'vikram@mail.com',role:'consultant',joined:'Mar 4, 2026',status:'pending',sessions:0,cat:'Wellness'},
+  ],
+  payouts: [
+    {consId:1,name:'Dr. Riya Sharma',init:'RS',grad:'linear-gradient(135deg,#E8A838,#F5C76A)',tc:'#080C12',amount:41310,sessions:58,status:'pending'},
+    {consId:2,name:'Arjun Kapoor',init:'AK',grad:'linear-gradient(135deg,#2DD4BF,#5EEAD4)',tc:'#080C12',amount:26520,sessions:44,status:'pending'},
+    {consId:3,name:'Priya Mehta',init:'PM',grad:'linear-gradient(135deg,#E06B45,#F59E6B)',tc:'#fff',amount:18360,sessions:31,status:'pending'},
+    {consId:4,name:'Vikram Nair (new)',init:'VN',grad:'linear-gradient(135deg,#8B5CF6,#A78BFA)',tc:'#fff',amount:12200,sessions:24,status:'paid'},
+  ],
+  // Chat messages keyed by chatId
+  customerChats: {
+    0: {name:'Dr. Riya Sharma',init:'RS',grad:'linear-gradient(135deg,#E8A838,#F5C76A)',tc:'#080C12',online:true,msgs:[
+      {from:'them',text:'Hello! Looking forward to our session today at 4 PM. Anything specific you\'d like to focus on?',time:'10:30 AM'},
+      {from:'you',text:'Hi Dr. Riya! Yes — mainly work-related anxiety and coping strategies.',time:'10:32 AM'},
+      {from:'them',text:'Perfect. I\'ll prepare some CBT exercises tailored for workplace stress. See you at 4! 🌿',time:'10:35 AM'},
+    ]},
+    1: {name:'Arjun Kapoor',init:'AK',grad:'linear-gradient(135deg,#2DD4BF,#5EEAD4)',tc:'#080C12',online:true,msgs:[
+      {from:'them',text:'Your Kundali reading is ready. March looks very promising for you! ✨',time:'9:00 AM'},
+      {from:'you',text:'Amazing! Can\'t wait to hear more 😄',time:'9:05 AM'},
+    ]},
+  },
+  consultantChats: {
+    0: {name:'Ananya Singh',init:'AS',grad:'linear-gradient(135deg,#2DD4BF,#5EEAD4)',tc:'#080C12',online:true,status:'Session today 4 PM',msgs:[
+      {from:'them',text:'Hi Dr. Riya! I\'ve been having really tough mornings lately. Lots of anxiety before work.',time:'9:00 AM'},
+      {from:'you',text:'I hear you, Ananya. That\'s exactly what we\'ll work on today. Can you describe what the anxiety feels like physically?',time:'9:04 AM'},
+      {from:'them',text:'My chest gets tight and I can\'t focus. It happens as soon as I open my emails.',time:'9:06 AM'},
+      {from:'you',text:'Very common with work anxiety. I\'m going to share a grounding exercise we can practice in our session today.',time:'9:08 AM'},
+    ]},
+    1: {name:'Rohan Mehta',init:'RM',grad:'linear-gradient(135deg,#E06B45,#F59E6B)',tc:'#fff',online:false,status:'Next session Mar 14',msgs:[
+      {from:'them',text:'Can we reschedule our 12:30 session to 2:00 PM? Something came up at work.',time:'8:30 AM'},
+      {from:'you',text:'Of course! 2:00 PM works. I\'ve updated the calendar.',time:'8:45 AM'},
+    ]},
+    2: {name:'Kavya Patel',init:'KP',grad:'linear-gradient(135deg,#8B5CF6,#A78BFA)',tc:'#fff',online:false,status:'Session today 3 PM',msgs:[
+      {from:'them',text:'Thank you so much for last session. I actually used the breathing technique this week and it helped a lot!',time:'Yesterday 6 PM'},
+    ]},
+    3: {name:'Dev Kumar',init:'DK',grad:'linear-gradient(135deg,#34D399,#6EE7B7)',tc:'#080C12',online:true,status:'Session today 5:30 PM',msgs:[
+      {from:'them',text:'Attached my mood journal for the past week.',time:'7:00 AM'},
+      {from:'you',text:'Thank you Dev, I\'ll review it before our session.',time:'7:20 AM'},
+    ]},
+  },
+  newCategoryForm: false,
+  searchQuery: '',
+  browseFilter: 'all',
+  sessionFilter: 'all',
+};
+
+// ═══════════════════════════════════════════════════════════════════
+// NAV CONFIG
+// ═══════════════════════════════════════════════════════════════════
+const NAV = {
+  customer: [
+    {id:'c-home',icon:'🏠',label:'Home'},
+    {id:'c-browse',icon:'🔍',label:'Find Consultants'},
+    {id:'c-sessions',icon:'📅',label:'My Sessions',badge:()=>STATE.customerSessions.filter(s=>s.status==='upcoming').length},
+    {id:'c-chat',icon:'💬',label:'Messages'},
+    {id:'c-profile',icon:'👤',label:'Profile'},
+  ],
+  consultant: [
+    {id:'con-home',icon:'📊',label:'Dashboard'},
+    {id:'con-calendar',icon:'📅',label:'Calendar'},
+    {id:'con-sessions',icon:'👥',label:'Sessions'},
+    {id:'con-inbox',icon:'💬',label:'Inbox',badge:()=>4},
+    {id:'con-earnings',icon:'💰',label:'Earnings'},
+    {id:'con-profile',icon:'⚙️',label:'Profile'},
+  ],
+  admin: [
+    {id:'a-home',icon:'📊',label:'Overview'},
+    {id:'a-consultants',icon:'👨‍💼',label:'Consultants',badge:()=>STATE.adminUsers.filter(u=>u.role==='consultant'&&u.status==='pending').length,badgeColor:'red'},
+    {id:'a-customers',icon:'👥',label:'Customers'},
+    {id:'a-categories',icon:'🏷️',label:'Categories'},
+    {id:'a-finance',icon:'💰',label:'Finance',badge:()=>STATE.payouts.filter(p=>p.status==='pending').length},
+    {id:'a-reports',icon:'📈',label:'Reports'},
+  ]
+};
+
+// ═══════════════════════════════════════════════════════════════════
+// AUTH
+// ═══════════════════════════════════════════════════════════════════
+function openAuth(mode){
+  STATE.authMode = mode;
+  const isLogin = mode === 'login';
+  document.getElementById('authTitle').textContent = isLogin ? 'Welcome back' : 'Create account';
+  document.getElementById('authSub').textContent = isLogin ? 'Sign in to your ConsultHub account' : 'Join 12,000+ users on ConsultHub';
+  document.getElementById('authSubmitBtn').textContent = isLogin ? 'Sign In →' : 'Create Account →';
+  document.getElementById('authToggleText').innerHTML = isLogin
+    ? `Don't have an account? <a onclick="toggleAuthMode()">Sign up free</a>`
+    : `Already have an account? <a onclick="toggleAuthMode()">Sign in</a>`;
+  document.getElementById('signupRoles').classList.toggle('hidden', isLogin);
+  document.getElementById('nameField').classList.toggle('hidden', isLogin);
+  document.getElementById('authModal').classList.remove('hidden');
+}
+function toggleAuthMode(){ openAuth(STATE.authMode === 'login' ? 'signup' : 'login'); }
+function pickRole(role, btn){
+  STATE.selectedRole = role;
+  document.querySelectorAll('.role-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+function doAuth(){ closeModal('authModal'); quickLogin(STATE.authMode === 'login' ? 'customer' : STATE.selectedRole); }
+
+function quickLogin(role){
+  closeModal('authModal');
+  STATE.role = role;
+  document.getElementById('landing').style.display = 'none';
+  document.getElementById('app').style.display = 'block';
+  const META = {
+    customer:{name:'Ananya Singh',init:'AS',roleLabel:'Customer',grad:'linear-gradient(135deg,#2DD4BF,#5EEAD4)',tc:'#080C12'},
+    consultant:{name:'Dr. Riya Sharma',init:'RS',roleLabel:'Consultant',grad:'linear-gradient(135deg,#E8A838,#F5C76A)',tc:'#080C12'},
+    admin:{name:'Raj Patel',init:'RP',roleLabel:'Admin',grad:'linear-gradient(135deg,#8B5CF6,#A78BFA)',tc:'#fff'},
+  };
+  const m = META[role];
+  document.getElementById('sb_name').textContent = m.name;
+  document.getElementById('sb_role').textContent = m.roleLabel;
+  const av = document.getElementById('sb_avatar');
+  av.textContent = m.init; av.style.background = m.grad; av.style.color = m.tc;
+  const firstPage = {customer:'c-home',consultant:'con-home',admin:'a-home'}[role];
+  navigate(firstPage);
+  toast('🎉', `Viewing the ${m.roleLabel} dashboard`);
+}
+function goToLanding(){
+  document.getElementById('app').style.display = 'none';
+  document.getElementById('landing').style.display = 'block';
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// NAVIGATION
+// ═══════════════════════════════════════════════════════════════════
+function navigate(page){
+  STATE.page = page;
+  // Rebuild sidebar
+  const nav = NAV[STATE.role];
+  let html = '';
+  nav.forEach(item=>{
+    const badgeVal = item.badge ? item.badge() : 0;
+    const badgeHtml = badgeVal > 0 ? `<span class="nav-badge ${item.badgeColor==='red'?'nav-badge-red':''}">${badgeVal}</span>` : '';
+    html += `<div class="nav-item ${item.id===page?'active':''}" onclick="navigate('${item.id}')">
+      <span class="nav-icon">${item.icon}</span>${item.label}${badgeHtml}
+    </div>`;
+  });
+  html += `<div class="nav-item" onclick="goToLanding()" style="margin-top:8px;"><span class="nav-icon">🚪</span>Exit Demo</div>`;
+  document.getElementById('sb_nav').innerHTML = html;
+
+  const PAGES = {
+    'c-home': pgCustomerHome, 'c-browse': pgBrowse, 'c-sessions': pgCustomerSessions,
+    'c-chat': pgCustomerChat, 'c-profile': pgCustomerProfile,
+    'con-home': pgConHome, 'con-calendar': pgCalendar, 'con-sessions': pgConSessions,
+    'con-inbox': pgConInbox, 'con-earnings': pgEarnings, 'con-profile': pgConProfile,
+    'a-home': pgAdminHome, 'a-consultants': pgAdminConsultants, 'a-customers': pgAdminCustomers,
+    'a-categories': pgAdminCategories, 'a-finance': pgAdminFinance, 'a-reports': pgAdminReports,
+  };
+  const mc = document.getElementById('main_content');
+  if(PAGES[page]){ mc.innerHTML = PAGES[page](); mc.scrollTop = 0; }
+  postRender(page);
+}
+
+function postRender(page){
+  // Scroll chat to bottom
+  if(page === 'c-chat'){ setTimeout(()=>scrollChat('cust_msgs'), 50); }
+  if(page === 'con-inbox'){ setTimeout(()=>scrollChat('con_msgs'), 50); }
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// CUSTOMER — HOME
+// ═══════════════════════════════════════════════════════════════════
+function pgCustomerHome(){
+  const upcoming = STATE.customerSessions.filter(s=>s.status==='upcoming');
+  const completed = STATE.customerSessions.filter(s=>s.status==='completed');
+  const totalSpent = STATE.customerSessions.filter(s=>s.status==='completed').reduce((a,s)=>a+s.fee,0);
+  const upcomingCard = upcoming.length ? (()=>{
+    const s = upcoming[0];
+    const c = STATE.consultants.find(x=>x.id===s.consId);
+    return `<div class="card mb-20">
+      <div class="card-header"><div class="card-title">Upcoming Session</div><span class="badge badge-gold">Today</span></div>
+      <div style="padding:18px 20px;display:flex;gap:16px;align-items:center;">
+        <div class="avatar avatar-lg" style="background:${c.grad};color:${c.tc};">${c.init}</div>
+        <div style="flex:1;">
+          <div class="fw-700 fs-15">${c.name}</div>
+          <div class="text-muted fs-13">${c.spec} • ${s.topic}</div>
+          <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap;">
+            <span class="badge badge-gold">📅 ${s.date}, ${s.time}</span>
+            <span class="badge badge-teal">📹 ${s.type === 'video' ? 'Video Call' : s.type === 'chat' ? 'Chat' : 'Voice Call'}</span>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <button class="btn btn-primary btn-sm" onclick="toast('📹','Launching video call...(Demo)')">Join Call</button>
+          <button class="btn btn-ghost btn-sm" onclick="navigate('c-chat')">Message</button>
+        </div>
+      </div>
+    </div>`;
+  })() : `<div class="card mb-20" style="padding:30px;text-align:center;"><div style="font-size:36px;margin-bottom:10px;">📅</div><div class="fw-700 mb-16">No upcoming sessions</div><button class="btn btn-primary btn-sm" onclick="navigate('c-browse')">Book Your First Session →</button></div>`;
+
+  return `
+    <div class="page-header">
+      <div><div class="page-title">Good afternoon, Ananya 👋</div><div class="page-sub">${upcoming.length ? `You have ${upcoming.length} upcoming session` : 'Ready to book your next session?'}</div></div>
+      <button class="btn btn-primary btn-sm" onclick="navigate('c-browse')">+ Book Session</button>
+    </div>
+    <div class="page-body">
+      <div class="stats-grid stats-grid-3 mb-20">
+        <div class="stat-card"><div class="stat-card-label">Total Sessions</div><div class="stat-card-value" id="stat_total">${STATE.customerSessions.length}</div><div class="stat-card-change positive">↑ +${upcoming.length} upcoming</div></div>
+        <div class="stat-card"><div class="stat-card-label">Amount Spent</div><div class="stat-card-value font-serif text-gold">₹${totalSpent.toLocaleString()}</div><div class="stat-card-change neutral">Across ${new Set(completed.map(s=>s.consId)).size} consultants</div></div>
+        <div class="stat-card"><div class="stat-card-label">Sessions Completed</div><div class="stat-card-value">${completed.length}</div><div class="stat-card-change positive">${completed.filter(s=>s.reviewed).length} reviews left</div></div>
+      </div>
+      ${upcomingCard}
+      <div class="flex-between mb-16"><div class="card-title">✨ Recommended for You</div><span class="text-muted fs-13">Based on your history</span></div>
+      <div class="grid-3">
+        ${STATE.consultants.slice(0,3).map(c=>`
+        <div class="cons-browse-card" onclick="openBooking(${c.id})">
+          <div style="display:flex;gap:12px;margin-bottom:12px;">
+            <div style="position:relative;"><div class="avatar avatar-lg" style="background:${c.grad};color:${c.tc};">${c.init}</div>${c.online?'<div class="online-dot" style="position:absolute;bottom:2px;right:2px;"></div>':''}</div>
+            <div><div class="fw-700 fs-14">${c.name}</div><div class="text-muted fs-12">${c.spec} • ${c.exp}</div><div class="rating-row"><span class="stars">★</span><span class="fw-700 fs-12">${c.rating}</span><span class="text-muted fs-12"> (${c.reviews})</span></div></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <div class="font-serif fw-700 fs-15 text-gold">₹${c.rate}/hr</div>
+            <button class="btn btn-primary btn-xs">Book →</button>
+          </div>
+        </div>`).join('')}
+      </div>
+    </div>`;
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// CUSTOMER — BROWSE
+// ═══════════════════════════════════════════════════════════════════
+function pgBrowse(){
+  const filters = ['All','Mental Health','Astrology','Nutrition','Wellness','Finance','Career'];
+  return `
+    <div class="page-header">
+      <div><div class="page-title">Find Consultants</div><div class="page-sub">Browse 200+ verified experts</div></div>
+    </div>
+    <div class="page-body">
+      <div class="search-bar">
+        <span style="color:var(--muted)">🔍</span>
+        <input type="text" id="browse_search" placeholder="Search by name, specialty, or topic..." oninput="doBrowseSearch(this.value)" value="${STATE.searchQuery}">
+        <select class="form-input" style="width:auto;padding:4px 8px;font-size:12px;" onchange="doBrowseSort(this.value)">
+          <option value="rating">Sort: Rating ↓</option>
+          <option value="price_asc">Sort: Price ↑</option>
+          <option value="price_desc">Sort: Price ↓</option>
+        </select>
+      </div>
+      <div class="filter-row">
+        ${filters.map(f=>`<button class="filter-btn ${STATE.browseFilter===(f==='All'?'all':f.toLowerCase().split(' ')[0])?'active':''}" onclick="setBrowseFilter('${f==='All'?'all':f.toLowerCase().split(' ')[0]}','${f}',this)">${f}</button>`).join('')}
+      </div>
+      <div class="cons-browse-grid" id="cons_grid">
+        ${renderConsCards()}
+      </div>
+    </div>`;
+}
+function renderConsCards(){
+  const q = STATE.searchQuery.toLowerCase();
+  const f = STATE.browseFilter;
+  const filtered = STATE.consultants.filter(c=>{
+    const matchCat = f === 'all' || c.cat === f || c.spec.toLowerCase().includes(f);
+    const matchQ = !q || c.name.toLowerCase().includes(q) || c.spec.toLowerCase().includes(q) || c.tags.some(t=>t.toLowerCase().includes(q));
+    return matchCat && matchQ && c.status === 'active';
+  });
+  if(!filtered.length) return `<div class="empty-state" style="grid-column:1/-1;"><div class="empty-icon">🔍</div><div class="empty-text">No consultants found. Try a different search.</div></div>`;
+  return filtered.map(c=>`
+    <div class="cons-browse-card">
+      <div style="display:flex;gap:12px;margin-bottom:12px;">
+        <div style="position:relative;flex-shrink:0;"><div class="avatar avatar-lg" style="background:${c.grad};color:${c.tc};">${c.init}</div>${c.online?'<div class="online-dot" style="position:absolute;bottom:2px;right:2px;width:10px;height:10px;"></div>':''}</div>
+        <div style="flex:1;min-width:0;">
+          <div class="fw-700 fs-14">${c.name}</div>
+          <div class="text-muted fs-12">${c.spec} • ${c.exp}</div>
+          <div class="rating-row"><span class="stars">★</span><span class="fw-700 fs-12">${c.rating}</span><span class="text-muted fs-12"> (${c.reviews})</span></div>
+        </div>
+      </div>
+      <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:12px;">
+        ${c.tags.map(t=>`<span class="tag" style="background:var(--surface);color:var(--muted);border:1px solid var(--border);">${t}</span>`).join('')}
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border);padding-top:12px;">
+        <div><div class="font-serif fw-700 fs-14 text-gold">₹${c.rate}/hr</div><div class="text-muted fs-11">${c.sessions.toLocaleString()} sessions</div></div>
+        <div style="display:flex;gap:6px;">
+          <button class="btn btn-ghost btn-xs" onclick="toast('👤','Profile view coming soon')">Profile</button>
+          <button class="btn btn-primary btn-xs" onclick="openBooking(${c.id})">Book</button>
+        </div>
+      </div>
+    </div>`).join('');
+}
+function doBrowseSearch(q){ STATE.searchQuery = q; const g = document.getElementById('cons_grid'); if(g) g.innerHTML = renderConsCards(); }
+function setBrowseFilter(val, label, btn){ STATE.browseFilter = val; document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); const g = document.getElementById('cons_grid'); if(g) g.innerHTML = renderConsCards(); }
+function doBrowseSort(val){
+  if(val==='price_asc') STATE.consultants.sort((a,b)=>a.rate-b.rate);
+  else if(val==='price_desc') STATE.consultants.sort((a,b)=>b.rate-a.rate);
+  else STATE.consultants.sort((a,b)=>b.rating-a.rating);
+  const g = document.getElementById('cons_grid'); if(g) g.innerHTML = renderConsCards();
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// CUSTOMER — SESSIONS
+// ═══════════════════════════════════════════════════════════════════
+function pgCustomerSessions(){
+  return `
+    <div class="page-header">
+      <div><div class="page-title">My Sessions</div><div class="page-sub">Your consultation history</div></div>
+    </div>
+    <div class="page-body">
+      <div class="filter-row">
+        ${['All','Upcoming','Completed','Cancelled'].map((f,i)=>`<button class="filter-btn ${STATE.sessionFilter===(i===0?'all':f.toLowerCase())?'active':''}" onclick="setSessionFilter('${i===0?'all':f.toLowerCase()}',this)">${f}</button>`).join('')}
+      </div>
+      <div class="card" id="sessions_table">
+        ${renderSessionsTable()}
+      </div>
+    </div>`;
+}
+function renderSessionsTable(){
+  const f = STATE.sessionFilter;
+  const data = f === 'all' ? STATE.customerSessions : STATE.customerSessions.filter(s=>s.status===f);
+  if(!data.length) return `<div class="empty-state"><div class="empty-icon">📅</div><div class="empty-text">No ${f} sessions found.</div><button class="btn btn-primary btn-sm" style="margin-top:16px;" onclick="navigate('c-browse')">Book a Session</button></div>`;
+  return `<table class="table">
+    <thead><tr><th>Consultant</th><th>Date & Time</th><th>Topic</th><th>Type</th><th>Fee</th><th>Status</th><th>Action</th></tr></thead>
+    <tbody>${data.map(s=>{
+      const c = STATE.consultants.find(x=>x.id===s.consId)||{name:'Unknown',init:'?',grad:'var(--surface)',tc:'var(--text)',spec:''};
+      const typeIcon = s.type==='video'?'📹':s.type==='chat'?'💬':'🎙';
+      return `<tr>
+        <td><div style="display:flex;align-items:center;gap:10px;"><div class="avatar avatar-sm" style="background:${c.grad};color:${c.tc};">${c.init}</div><div><div class="fw-700 fs-13">${c.name}</div><div class="text-muted fs-11">${c.spec}</div></div></div></td>
+        <td class="fs-13">${s.date}, ${s.time}</td>
+        <td class="fs-13">${s.topic}</td>
+        <td><span class="badge badge-muted">${typeIcon} ${s.type}</span></td>
+        <td class="font-serif fw-700 text-gold">₹${s.fee}</td>
+        <td><span class="badge ${s.status==='upcoming'?'badge-gold':s.status==='completed'?'badge-green':'badge-red'}">${s.status}</span></td>
+        <td>${s.status==='upcoming'
+          ?`<div style="display:flex;gap:4px;"><button class="btn btn-primary btn-xs" onclick="toast('📹','Starting ${s.type} call...')">Join</button><button class="btn btn-ghost btn-xs" onclick="cancelSession(${s.id})">Cancel</button></div>`
+          :s.reviewed
+            ?`<span class="badge badge-green fs-11">✓ Reviewed</span>`
+            :`<button class="btn btn-ghost btn-xs" onclick="openReview(${s.id})">⭐ Review</button>`
+        }</td>
+      </tr>`;
+    }).join('')}</tbody>
+  </table>`;
+}
+function setSessionFilter(f, btn){ STATE.sessionFilter = f; document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); const t = document.getElementById('sessions_table'); if(t) t.innerHTML = renderSessionsTable(); }
+function cancelSession(id){ const s = STATE.customerSessions.find(x=>x.id===id); if(s){ s.status='cancelled'; navigate(STATE.page); toast('❌','Session cancelled. Refund will be processed in 2-3 days.'); } }
+
+// ═══════════════════════════════════════════════════════════════════
+// CUSTOMER — CHAT
+// ═══════════════════════════════════════════════════════════════════
+function pgCustomerChat(){
+  const chats = STATE.customerChats;
+  const cid = STATE.activeChatId;
+  const active = chats[cid];
+  return `
+    <div class="page-header"><div><div class="page-title">Messages</div><div class="page-sub">Encrypted conversations</div></div></div>
+    <div style="padding:0 32px 24px;">
+      <div class="chat-layout">
+        <div class="chat-sidebar-panel">
+          <div class="chat-sidebar-header">Conversations <span class="badge badge-gold fs-11" style="margin-left:6px;">2</span></div>
+          <div class="chat-list">
+            ${Object.entries(chats).map(([id,ch])=>`
+            <div class="chat-item ${parseInt(id)===cid?'active-chat':''}" onclick="switchCustomerChat(${id})">
+              <div class="avatar avatar-sm" style="background:${ch.grad};color:${ch.tc};">${ch.init}</div>
+              <div style="flex:1;min-width:0;">
+                <div class="chat-item-name">${ch.name}</div>
+                <div class="chat-item-preview">${ch.msgs[ch.msgs.length-1]?.text||'No messages yet'}</div>
+              </div>
+            </div>`).join('')}
+          </div>
+        </div>
+        <div class="chat-window">
+          <div class="chat-header">
+            <div class="avatar avatar-sm" style="background:${active.grad};color:${active.tc};">${active.init}</div>
+            <div><div class="fw-700 fs-14">${active.name}</div><div style="font-size:11px;color:${active.online?'var(--green)':'var(--muted)'};">${active.online?'● Online':'○ Offline'}</div></div>
+            <div style="margin-left:auto;display:flex;gap:6px;">
+              <button class="btn btn-ghost btn-xs" onclick="toast('📹','Launching video call...')">📹</button>
+              <button class="btn btn-ghost btn-xs" onclick="toast('📎','File upload: attach PDFs or images')">📎</button>
+            </div>
+          </div>
+          <div class="chat-messages" id="cust_msgs">
+            ${active.msgs.map(m=>`<div class="msg msg-${m.from==='you'?'you':'them'}"><div class="msg-bubble">${m.text}</div><div class="msg-time">${m.time}</div></div>`).join('')}
+          </div>
+          <div class="chat-input-area">
+            <input class="chat-input" id="cust_chat_input" placeholder="Type a message..." onkeydown="if(event.key==='Enter')sendCustomerMsg()">
+            <button class="btn btn-primary btn-sm" onclick="sendCustomerMsg()">Send</button>
+          </div>
+        </div>
+      </div>
+    </div>`;
+}
+function switchCustomerChat(id){ STATE.activeChatId = id; navigate('c-chat'); }
+function sendCustomerMsg(){
+  const input = document.getElementById('cust_chat_input');
+  if(!input||!input.value.trim()) return;
+  const t = now();
+  STATE.customerChats[STATE.activeChatId].msgs.push({from:'you',text:input.value.trim(),time:t});
+  input.value = '';
+  navigate('c-chat');
+  setTimeout(()=>{
+    const replies = ['Got it! See you soon 🌿','I\'ll make a note of that.','Thanks for sharing. We\'ll address this in our session.','That\'s helpful context, thank you!'];
+    const idx = STATE.customerChats[STATE.activeChatId].msgs.length % replies.length;
+    STATE.customerChats[STATE.activeChatId].msgs.push({from:'them',text:replies[idx],time:now()});
+    navigate('c-chat');
+  }, 1200);
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// CUSTOMER — PROFILE
+// ═══════════════════════════════════════════════════════════════════
+function pgCustomerProfile(){
+  const p = STATE.profile.customer;
+  const pr = STATE.prefs;
+  return `
+    <div class="page-header">
+      <div><div class="page-title">My Profile</div></div>
+      <button class="btn btn-primary btn-sm" onclick="saveCustomerProfile()">Save Changes</button>
+    </div>
+    <div class="page-body">
+      <div class="profile-header">
+        <div class="avatar avatar-xl" style="background:linear-gradient(135deg,#2DD4BF,#5EEAD4);color:#080C12;">AS</div>
+        <div style="flex:1;">
+          <div style="font-family:'Fraunces',serif;font-size:24px;font-weight:700;" id="profile_display_name">${p.name}</div>
+          <div class="text-muted fs-14" style="margin:4px 0 12px;">Customer · Member since Jan 2026</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <span class="badge badge-gold">Pro Member</span>
+            <span class="badge badge-green">✓ Verified Email</span>
+            <span class="badge badge-teal">${STATE.customerSessions.length} Sessions</span>
+          </div>
+        </div>
+        <button class="btn btn-ghost btn-sm" onclick="toast('📷','Upload photo feature coming soon')">Change Photo</button>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header"><div class="card-title">Personal Information</div></div>
+          <div style="padding:20px;display:flex;flex-direction:column;gap:12px;">
+            <div class="form-group" style="margin:0;"><label class="form-label">Full Name</label><input class="form-input" id="pf_name" value="${p.name}"></div>
+            <div class="form-group" style="margin:0;"><label class="form-label">Email</label><input class="form-input" id="pf_email" value="${p.email}"></div>
+            <div class="form-group" style="margin:0;"><label class="form-label">Phone</label><input class="form-input" id="pf_phone" value="${p.phone}"></div>
+            <div class="form-group" style="margin:0;"><label class="form-label">City</label><input class="form-input" id="pf_city" value="${p.city}"></div>
+          </div>
+        </div>
+        <div>
+          <div class="card mb-16">
+            <div class="card-header"><div class="card-title">Subscription</div></div>
+            <div style="padding:20px;">
+              <div class="flex-between mb-16"><span class="badge badge-gold">Pro Plan</span><span class="text-muted fs-13">Renews Apr 1, 2026</span></div>
+              <div class="progress-bar mb-16"><div class="progress-fill" style="width:70%;"></div></div>
+              <div class="text-muted fs-13 mb-16">21 of 30 days used</div>
+              <button class="btn btn-secondary btn-sm w-full" style="justify-content:center;" onclick="toast('💳','Redirecting to billing...')">Manage Plan</button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header"><div class="card-title">Notification Preferences</div></div>
+            <div style="padding:16px 20px;">
+              ${[
+                ['emailNotifs','Email notifications'],
+                ['pushNotifs','Push notifications'],
+                ['sessionReminders','Session reminders'],
+                ['smsAlerts','SMS alerts'],
+              ].map(([key,label])=>`
+              <div class="toggle-wrap">
+                <span class="fs-14">${label}</span>
+                <div class="toggle ${pr[key]?'on':'off'}" id="tog_${key}" onclick="togglePref('${key}')"><div class="toggle-knob"></div></div>
+              </div>`).join('')}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>`;
+}
+function togglePref(key){
+  STATE.prefs[key] = !STATE.prefs[key];
+  const el = document.getElementById('tog_'+key);
+  if(el){ el.className = 'toggle '+(STATE.prefs[key]?'on':'off'); el.innerHTML = '<div class="toggle-knob"></div>'; }
+  toast(STATE.prefs[key]?'🔔':'🔕', `${key.replace(/([A-Z])/g,' $1')} ${STATE.prefs[key]?'enabled':'disabled'}`);
+}
+function saveCustomerProfile(){
+  STATE.profile.customer.name = document.getElementById('pf_name')?.value || STATE.profile.customer.name;
+  STATE.profile.customer.email = document.getElementById('pf_email')?.value || STATE.profile.customer.email;
+  STATE.profile.customer.phone = document.getElementById('pf_phone')?.value || STATE.profile.customer.phone;
+  STATE.profile.customer.city = document.getElementById('pf_city')?.value || STATE.profile.customer.city;
+  const dn = document.getElementById('profile_display_name');
+  if(dn) dn.textContent = STATE.profile.customer.name;
+  document.getElementById('sb_name').textContent = STATE.profile.customer.name;
+  toast('💾','Profile saved successfully!');
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// CONSULTANT — HOME
+// ═══════════════════════════════════════════════════════════════════
+function pgConHome(){
+  const weekData = [28,42,38,55,47,60,48];
+  const maxW = Math.max(...weekData);
+  return `
+    <div class="page-header">
+      <div><div class="page-title">Dashboard</div><div class="page-sub">Welcome back, Dr. Riya 👋</div></div>
+      <span class="badge badge-green" style="padding:8px 14px;font-size:12px;">● Active & Available</span>
+    </div>
+    <div class="page-body">
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-card-label">Today's Sessions</div><div class="stat-card-value">${STATE.consultantSessions.length}</div><div class="stat-card-change neutral">${STATE.consultantSessions.filter(s=>s.status==='upcoming').length} remaining</div></div>
+        <div class="stat-card"><div class="stat-card-label">This Month</div><div class="stat-card-value font-serif text-gold">₹48,600</div><div class="stat-card-change positive">↑ +18% vs last month</div></div>
+        <div class="stat-card"><div class="stat-card-label">Client Retention</div><div class="stat-card-value">78%</div><div class="stat-card-change positive">↑ +5% this quarter</div></div>
+        <div class="stat-card"><div class="stat-card-label">Your Rating</div><div class="stat-card-value">4.9 ★</div><div class="stat-card-change positive">234 reviews</div></div>
+      </div>
+      <div class="grid-2-1">
+        <div>
+          <div class="card mb-20">
+            <div class="card-header"><div class="card-title">Today's Schedule</div><button class="btn btn-ghost btn-xs" onclick="navigate('con-calendar')">Full Calendar</button></div>
+            <div style="padding:16px 20px;">
+              ${STATE.consultantSessions.map(s=>`
+              <div class="session-item ${s.cat}">
+                <div style="font-size:12px;font-weight:700;color:var(--gold);min-width:65px;">${s.time}</div>
+                <div class="avatar avatar-xs" style="background:var(--card2);color:var(--gold);">${s.init}</div>
+                <div style="flex:1;"><div class="fw-700 fs-13">${s.client}</div><div class="text-muted fs-12">${s.topic}</div></div>
+                <span class="badge ${s.status==='completed'?'badge-green':s.status==='upcoming'?'badge-muted':'badge-gold'}">${s.status}</span>
+                <button class="btn btn-primary btn-xs" onclick="toast('📹','Joining session with ${s.client}...')">Join</button>
+              </div>`).join('')}
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header"><div class="card-title">Weekly Earnings</div><span class="font-serif fw-700 text-gold">₹318 avg/day</span></div>
+            <div style="padding:20px;">
+              <div class="week-chart">
+                ${['M','T','W','T','F','S','S'].map((d,i)=>`
+                <div class="week-bar-wrap">
+                  <div class="week-bar" style="height:${weekData[i]/maxW*100}%;background:${i===6?'var(--gold)':'var(--border2)'};" title="₹${weekData[i]*100}"></div>
+                  <div class="week-label">${d}</div>
+                </div>`).join('')}
+              </div>
+              <div class="text-muted fs-12 mt-16" style="text-align:center;">₹${weekData.reduce((a,b)=>a+b,0)*100} total this week</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="card mb-16">
+            <div class="card-header"><div class="card-title">Performance</div></div>
+            <div style="padding:16px 20px;display:flex;flex-direction:column;gap:14px;">
+              ${[['Profile Views','78',78,'var(--gold)'],['Booking Rate','64%',64,'var(--teal)'],['Repeat Clients','78%',78,'var(--green)'],['No-show Rate','2.1%',2,'var(--green)']].map(([l,v,p,c])=>`
+              <div><div class="flex-between mb-16" style="margin-bottom:5px;"><span class="text-muted fs-12">${l}</span><span class="fw-700 fs-13">${v}</span></div><div class="progress-bar"><div class="progress-fill" style="width:${p}%;background:${c};"></div></div></div>`).join('')}
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header"><div class="card-title">Badges</div></div>
+            <div style="padding:16px 20px;display:flex;flex-direction:column;gap:12px;">
+              <div class="flex-center gap-8"><span style="font-size:20px;">✅</span><div><div class="fw-700 fs-13">Verified Expert</div><div class="text-muted fs-11">Background checked</div></div></div>
+              <div class="flex-center gap-8"><span style="font-size:20px;">⭐</span><div><div class="fw-700 fs-13">Top Rated</div><div class="text-muted fs-11">4.9 avg rating</div></div></div>
+              <div class="flex-center gap-8"><span style="font-size:20px;">🏆</span><div><div class="fw-700 fs-13">1000+ Sessions</div><div class="text-muted fs-11">Power consultant</div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>`;
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// CONSULTANT — CALENDAR
+// ═══════════════════════════════════════════════════════════════════
+const sessionDays = {3:'10:00 AM · Ananya S.',5:'10:00 AM · 12:30 · 3:00 · 5:30 PM',7:'2:00 PM · Nisha R.',10:'11:00 AM · Arun T.',12:'9:30 AM · Dev K.',14:'4:00 PM · Priya M.',17:'1:00 PM · Rohan M.',19:'3:30 PM · Kavya P.',21:'11:00 AM · 3:00 PM',24:'2:00 PM · Ananya S.',26:'10:00 AM · Dev K.',28:'5:00 PM · Nisha R.'};
+
+function pgCalendar(){
+  const days=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  let cal = days.map(d=>`<div class="cal-header-cell">${d}</div>`).join('');
+  for(let i=0;i<0;i++) cal+=`<div class="cal-day cal-empty"></div>`;
+  for(let d=1;d<=31;d++){
+    cal+=`<div class="cal-day ${d===STATE.calSelectedDay?'cal-selected':''} ${d===11?'cal-today':''} ${sessionDays[d]?'cal-has-session':''} ${d===0?'cal-empty':''}" onclick="selectCalDay(${d})">${d}</div>`;
+  }
+  const dayInfo = sessionDays[STATE.calSelectedDay];
+  return `
+    <div class="page-header">
+      <div><div class="page-title">Calendar</div><div class="page-sub">March 2026</div></div>
+      <div style="display:flex;gap:8px;">
+        <button class="btn btn-ghost btn-sm" onclick="toast('◀','February 2026')">◀ Feb</button>
+        <button class="btn btn-ghost btn-sm" onclick="toast('▶','April 2026')">Apr ▶</button>
+        <button class="btn btn-primary btn-sm" onclick="toast('🕐','Setting your availability slots...')">Set Availability</button>
+      </div>
+    </div>
+    <div class="page-body">
+      <div class="grid-2-1">
+        <div class="card">
+          <div class="card-header"><div class="card-title">Monthly View</div><div style="display:flex;gap:8px;"><span class="badge badge-gold fs-11">● Session days</span><span class="badge badge-teal fs-11">● Today</span></div></div>
+          <div style="padding:16px;">
+            <div class="calendar-grid">${cal}</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><div class="card-title">Mar ${STATE.calSelectedDay}</div></div>
+          <div style="padding:16px;">
+            ${dayInfo ? `<div style="display:flex;flex-direction:column;gap:8px;">${STATE.consultantSessions.filter((_,i)=>STATE.calSelectedDay===5||i<2).map(s=>`
+              <div class="session-item ${s.cat}" style="margin:0;">
+                <div style="font-size:12px;font-weight:700;color:var(--gold);">${s.time}</div>
+                <div style="flex:1;"><div class="fw-700 fs-13">${s.client}</div><div class="text-muted fs-11">${s.topic}</div></div>
+                <span class="badge ${s.status==='upcoming'?'badge-muted':'badge-green'}">${s.status}</span>
+              </div>`).join('')}</div>` : `<div class="empty-state"><div class="empty-icon">📅</div><div class="empty-text">No sessions on Mar ${STATE.calSelectedDay}</div><button class="btn btn-ghost btn-xs" style="margin-top:10px;" onclick="toast('➕','Adding availability slot...')">+ Add Slot</button></div>`}
+          </div>
+        </div>
+      </div>
+    </div>`;
+}
+function selectCalDay(d){ STATE.calSelectedDay = d; navigate('con-calendar'); }
+
+// ═══════════════════════════════════════════════════════════════════
+// CONSULTANT — SESSIONS
+// ═══════════════════════════════════════════════════════════════════
+function pgConSessions(){
+  const all = [
+    ...STATE.consultantSessions.map(s=>({...s,date:'Mar 11'})),
+    {id:5,client:'Nisha R.',init:'NR',date:'Mar 10',time:'11:00 AM',topic:'Social Anxiety',status:'completed',cat:'cat-mental',fee:800},
+    {id:6,client:'Arun T.',init:'AT',date:'Mar 9',time:'4:00 PM',topic:'Panic Attacks',status:'completed',cat:'cat-mental',fee:800},
+    {id:7,client:'Priya S.',init:'PS',date:'Mar 7',time:'2:00 PM',topic:'Grief Support',status:'completed',cat:'cat-mental',fee:800},
+  ];
+  return `
+    <div class="page-header"><div><div class="page-title">Sessions</div><div class="page-sub">All client sessions</div></div></div>
+    <div class="page-body">
+      <div class="stats-grid stats-grid-3 mb-20">
+        <div class="stat-card"><div class="stat-card-label">This Week</div><div class="stat-card-value">18</div></div>
+        <div class="stat-card"><div class="stat-card-label">This Month</div><div class="stat-card-value">64</div></div>
+        <div class="stat-card"><div class="stat-card-label">Total</div><div class="stat-card-value">1,247</div></div>
+      </div>
+      <div class="card">
+        <table class="table">
+          <thead><tr><th>Client</th><th>Date</th><th>Topic</th><th>Status</th><th>Fee</th><th>Notes</th></tr></thead>
+          <tbody>${all.map(s=>`<tr>
+            <td><div style="display:flex;align-items:center;gap:8px;"><div class="avatar avatar-sm" style="background:var(--card2);color:var(--gold);">${s.init}</div><span class="fw-700 fs-13">${s.client}</span></div></td>
+            <td class="fs-13 text-muted">${s.date}, ${s.time}</td>
+            <td class="fs-13">${s.topic}</td>
+            <td><span class="badge ${s.status==='completed'?'badge-green':'badge-gold'}">${s.status}</span></td>
+            <td class="font-serif fw-700 text-gold">₹${s.fee}</td>
+            <td><button class="btn btn-ghost btn-xs" onclick="toast('📝','Session notes editor opening...')">Add Notes</button></td>
+          </tr>`).join('')}</tbody>
+        </table>
+      </div>
+    </div>`;
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// CONSULTANT — INBOX
+// ═══════════════════════════════════════════════════════════════════
+function pgConInbox(){
+  const chats = STATE.consultantChats;
+  const cid = STATE.activeConsChatId;
+  const active = chats[cid];
+  return `
+    <div class="page-header">
+      <div><div class="page-title">Inbox</div><div class="page-sub">Client messages</div></div>
+      <button class="btn btn-ghost btn-sm" onclick="toast('📄','Template library: Booking Confirm, Session Reminder, Follow-up...')">📄 Templates</button>
+    </div>
+    <div style="padding:0 32px 24px;">
+      <div class="chat-layout">
+        <div class="chat-sidebar-panel">
+          <div class="chat-sidebar-header">Messages <span class="badge badge-gold fs-11" style="margin-left:6px;">3</span></div>
+          <div class="chat-list">
+            ${Object.entries(chats).map(([id,ch])=>`
+            <div class="chat-item ${parseInt(id)===cid?'active-chat':''}" onclick="switchConChat(${id})">
+              <div class="avatar avatar-sm" style="background:${ch.grad};color:${ch.tc};">${ch.init}</div>
+              <div style="flex:1;min-width:0;">
+                <div class="chat-item-name">${ch.name}</div>
+                <div class="chat-item-preview">${ch.msgs[ch.msgs.length-1]?.text||'No messages'}</div>
+              </div>
+            </div>`).join('')}
+          </div>
+        </div>
+        <div class="chat-window">
+          <div class="chat-header">
+            <div class="avatar avatar-sm" style="background:${active.grad};color:${active.tc};">${active.init}</div>
+            <div><div class="fw-700 fs-14">${active.name}</div><div style="font-size:11px;color:var(--muted);">${active.status}</div></div>
+            <div style="margin-left:auto;display:flex;gap:6px;">
+              <button class="btn btn-ghost btn-xs" onclick="toast('📹','Starting video call...')">📹</button>
+              <button class="btn btn-ghost btn-xs" onclick="toast('📎','Share PDF, image, or resource...')">📎 Share</button>
+            </div>
+          </div>
+          <div class="chat-messages" id="con_msgs">
+            ${active.msgs.map(m=>`<div class="msg msg-${m.from==='you'?'you':'them'}"><div class="msg-bubble">${m.text}</div><div class="msg-time">${m.time}</div></div>`).join('')}
+          </div>
+          <div style="padding:8px 14px;border-top:1px solid var(--border);background:rgba(232,168,56,.04);">
+            <div class="fs-11 text-muted" style="margin-bottom:5px;">Quick Templates</div>
+            <div style="display:flex;gap:4px;flex-wrap:wrap;">
+              ${['✅ Booking Confirm','📅 Reminder','📋 Follow-up','📄 Share Resource'].map(t=>`<button class="btn btn-ghost btn-xs" onclick="insertTemplate('${t.replace(/['"]/g,'')}')">${t}</button>`).join('')}
+            </div>
+          </div>
+          <div class="chat-input-area">
+            <input class="chat-input" id="con_chat_input" placeholder="Reply to ${active.name}..." onkeydown="if(event.key==='Enter')sendConMsg()">
+            <button class="btn btn-primary btn-sm" onclick="sendConMsg()">Send</button>
+          </div>
+        </div>
+      </div>
+    </div>`;
+}
+function switchConChat(id){ STATE.activeConsChatId = id; navigate('con-inbox'); }
+function sendConMsg(){
+  const input = document.getElementById('con_chat_input');
+  if(!input||!input.value.trim()) return;
+  STATE.consultantChats[STATE.activeConsChatId].msgs.push({from:'you',text:input.value.trim(),time:now()});
+  input.value = '';
+  navigate('con-inbox');
+}
+function insertTemplate(t){
+  const replies = {
+    '✅ Booking Confirm':'Your session has been confirmed. Looking forward to speaking with you! 🌿',
+    '📅 Reminder':'Just a reminder: we have a session scheduled. Please ensure you\'re in a quiet, private space.',
+    '📋 Follow-up':'Following up on our last session. Remember to practice the exercises we discussed. How are you feeling?',
+    '📄 Share Resource':'I\'ve attached a resource that may help between our sessions. Please take a look when you have a moment.',
+  };
+  const input = document.getElementById('con_chat_input');
+  if(input) input.value = replies[t] || t;
+  input && input.focus();
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// CONSULTANT — EARNINGS
+// ═══════════════════════════════════════════════════════════════════
+function pgEarnings(){
+  const months=[['Oct',28000],['Nov',34000],['Dec',41000],['Jan',38000],['Feb',45000],['Mar',48600]];
+  const max = Math.max(...months.map(m=>m[1]));
+  const txns=[{c:'Ananya S.',d:'Mar 11',a:800,s:'completed'},{c:'Rohan M.',d:'Mar 11',a:800,s:'completed'},{c:'Kavya P.',d:'Mar 10',a:800,s:'pending'},{c:'Dev K.',d:'Mar 9',a:800,s:'completed'},{c:'Nisha R.',d:'Mar 8',a:800,s:'completed'}];
+  return `
+    <div class="page-header">
+      <div><div class="page-title">Earnings</div><div class="page-sub">Transparent financial overview</div></div>
+      <button class="btn btn-primary btn-sm" onclick="toast('💳','Payout of ₹41,310 initiated via Razorpay!')">Request Payout</button>
+    </div>
+    <div class="page-body">
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-card-label">This Month (Gross)</div><div class="stat-card-value font-serif text-gold">₹48,600</div><div class="stat-card-change positive">↑ +8% from Feb</div></div>
+        <div class="stat-card"><div class="stat-card-label">After 15% Fee</div><div class="stat-card-value font-serif text-green">₹41,310</div><div class="stat-card-change neutral">Your net payout</div></div>
+        <div class="stat-card"><div class="stat-card-label">Total Lifetime</div><div class="stat-card-value font-serif">₹9.8L</div><div class="stat-card-change neutral">Since Oct 2025</div></div>
+        <div class="stat-card"><div class="stat-card-label">Sessions This Month</div><div class="stat-card-value">64</div><div class="stat-card-change positive">₹759 avg/session</div></div>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header"><div class="card-title">Monthly Earnings Trend</div></div>
+          <div style="padding:20px;">
+            <div class="bar-chart">
+              ${months.map(([m,v])=>`<div class="bar-row"><div class="bar-label">${m}</div><div class="bar-track"><div class="bar-fill" style="width:${v/max*100}%;background:${m==='Mar'?'var(--gold)':'var(--border2)'}"></div></div><div class="bar-val ${m==='Mar'?'text-gold':'text-muted'}">₹${(v/1000).toFixed(0)}K</div></div>`).join('')}
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="card mb-16">
+            <div class="card-header"><div class="card-title">Recent Transactions</div></div>
+            <div style="padding:0 16px;">
+              ${txns.map(t=>`<div class="flex-between" style="padding:12px 0;border-bottom:1px solid var(--border);"><div><div class="fw-700 fs-13">${t.c}</div><div class="text-muted fs-11">${t.d}</div></div><div style="text-align:right;"><div class="font-serif fw-700 text-gold">+₹${t.a}</div><span class="badge ${t.s==='completed'?'badge-green':'badge-gold'} fs-11">${t.s}</span></div></div>`).join('')}
+            </div>
+          </div>
+          <div class="card" style="background:rgba(232,168,56,.05);border-color:rgba(232,168,56,.2);">
+            <div style="padding:18px;">
+              <div class="fw-700 fs-13 text-gold mb-16" style="margin-bottom:10px;">💡 Fee Breakdown</div>
+              <div class="flex-between fs-13" style="margin-bottom:6px;"><span class="text-muted">Gross earnings</span><span>₹48,600</span></div>
+              <div class="flex-between fs-13" style="margin-bottom:6px;"><span class="text-muted">Platform fee (15%)</span><span class="text-red">−₹7,290</span></div>
+              <div class="divider" style="margin:8px 0;"></div>
+              <div class="flex-between fw-700"><span>Your net payout</span><span class="text-green">₹41,310</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>`;
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// CONSULTANT — PROFILE
+// ═══════════════════════════════════════════════════════════════════
+function pgConProfile(){
+  const p = STATE.profile.consultant;
+  return `
+    <div class="page-header">
+      <div><div class="page-title">My Profile</div><div class="page-sub">Manage your professional listing</div></div>
+      <button class="btn btn-primary btn-sm" onclick="saveConProfile()">Publish Changes</button>
+    </div>
+    <div class="page-body">
+      <div class="profile-header">
+        <div class="avatar avatar-xl" style="background:linear-gradient(135deg,#E8A838,#F5C76A);color:#080C12;">RS</div>
+        <div style="flex:1;">
+          <div style="font-family:'Fraunces',serif;font-size:24px;font-weight:700;" id="con_display_name">${p.name}</div>
+          <div class="text-muted fs-14" style="margin:4px 0 12px;">Mental Health Consultant · 6 years experience</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <span class="badge badge-green">✓ Verified Expert</span>
+            <span class="badge badge-gold">⭐ Top Rated</span>
+            <span class="badge badge-teal">🏆 1000+ Sessions</span>
+          </div>
+        </div>
+        <div style="text-align:right;">
+          <div class="font-serif fw-700 text-gold" style="font-size:26px;">₹<span id="con_rate_display">${p.rate}</span>/hr</div>
+          <div class="text-muted fs-12">Current rate</div>
+        </div>
+      </div>
+      <div class="grid-2">
+        <div>
+          <div class="card mb-16">
+            <div class="card-header"><div class="card-title">Profile Information</div></div>
+            <div style="padding:20px;display:flex;flex-direction:column;gap:12px;">
+              <div class="form-group" style="margin:0;"><label class="form-label">Display Name</label><input class="form-input" id="con_name" value="${p.name}"></div>
+              <div class="form-group" style="margin:0;"><label class="form-label">Specialty</label><input class="form-input" id="con_spec" value="${p.specialty}"></div>
+              <div class="form-group" style="margin:0;"><label class="form-label">Hourly Rate (₹)</label><input class="form-input" id="con_rate" type="number" value="${p.rate}" oninput="document.getElementById('con_rate_display').textContent=this.value"></div>
+              <div class="form-group" style="margin:0;"><label class="form-label">Bio</label><textarea class="form-input" rows="3" id="con_bio">${p.bio}</textarea></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header"><div class="card-title">Certifications</div><button class="btn btn-ghost btn-xs" onclick="toast('📄','Upload certification document...')">+ Add</button></div>
+            <div style="padding:16px 20px;display:flex;flex-direction:column;gap:10px;">
+              ${['M.Phil Clinical Psychology — NIMHANS Bangalore','CBT Practitioner Certification — Beck Institute','REBT Training — Albert Ellis Institute'].map(c=>`<div class="flex-between"><div class="flex-center gap-8"><span>📄</span><span class="fs-13">${c}</span></div><span class="badge badge-green">✓</span></div>`).join('')}
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="card mb-16">
+            <div class="card-header"><div class="card-title">Weekly Availability</div></div>
+            <div style="padding:16px 20px;">
+              ${['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'].map((d,i)=>`
+              <div class="flex-between" style="padding:8px 0;border-bottom:1px solid var(--border);">
+                <span class="fs-13">${d}</span>
+                <div style="display:flex;gap:6px;align-items:center;">
+                  ${i<5?`<select class="form-input" style="padding:4px 6px;font-size:11px;width:80px;"><option>9:00 AM</option><option selected>10:00 AM</option></select>
+                  <span class="text-muted fs-12">–</span>
+                  <select class="form-input" style="padding:4px 6px;font-size:11px;width:80px;"><option selected>7:00 PM</option><option>8:00 PM</option></select>`
+                  :`<span class="badge badge-muted fs-11">Unavailable</span>`}
+                </div>
+              </div>`).join('')}
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header"><div class="card-title">Promotions</div><button class="btn btn-primary btn-xs" onclick="toast('🎯','Creating new promotion...')">+ Create</button></div>
+            <div style="padding:16px 20px;">
+              <div style="background:rgba(232,168,56,.08);border:1px solid rgba(232,168,56,.2);border-radius:10px;padding:12px;">
+                <div class="flex-between"><span class="fw-700 fs-13">First Session 20% Off</span><span class="badge badge-green">Active</span></div>
+                <div class="text-muted fs-11 mt-16" style="margin-top:4px;">Expires Mar 31 · Used 34 times</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>`;
+}
+function saveConProfile(){
+  STATE.profile.consultant.name = document.getElementById('con_name')?.value || STATE.profile.consultant.name;
+  STATE.profile.consultant.specialty = document.getElementById('con_spec')?.value || STATE.profile.consultant.specialty;
+  STATE.profile.consultant.bio = document.getElementById('con_bio')?.value || STATE.profile.consultant.bio;
+  const newRate = parseInt(document.getElementById('con_rate')?.value);
+  if(newRate && !isNaN(newRate)){
+    STATE.profile.consultant.rate = newRate;
+    // Update consultant in list
+    const c = STATE.consultants.find(x=>x.id===1);
+    if(c) c.rate = newRate;
+  }
+  document.getElementById('sb_name').textContent = STATE.profile.consultant.name;
+  toast('💾','Profile published successfully!');
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// ADMIN — HOME
+// ═══════════════════════════════════════════════════════════════════
+function pgAdminHome(){
+  const pending = STATE.adminUsers.filter(u=>u.role==='consultant'&&u.status==='pending').length;
+  const cats = [['Wellness',45,'#2DD4BF'],['Mental Health',34,'#8B5CF6'],['Career',22,'#E06B45'],['Astrology',28,'#E8A838'],['Nutrition',19,'#34D399'],['Finance',16,'#F87171']];
+  return `
+    <div class="page-header">
+      <div><div class="page-title">Admin Overview</div><div class="page-sub">Platform health — March 11, 2026</div></div>
+      <div style="display:flex;gap:8px;">
+        <button class="btn btn-ghost btn-sm" onclick="toast('📊','Generating CSV report...')">Export Report</button>
+        <button class="btn btn-primary btn-sm" onclick="toast('🤖','AI analysis: Astrology ↑34%, boost listings.')">🤖 AI Insights</button>
+      </div>
+    </div>
+    <div class="page-body">
+      ${pending>0?`<div class="admin-alert"><span style="font-size:18px;">🕐</span><div class="fs-14"><strong style="color:var(--gold);">${pending} consultant(s) pending review.</strong> Background checks in progress.</div><button class="btn btn-primary btn-xs" style="margin-left:auto;white-space:nowrap;" onclick="navigate('a-consultants')">Review Now →</button></div>`:''}
+      <div class="admin-alert"><span style="font-size:18px;">🤖</span><div class="fs-14"><strong class="text-gold">AI Alert:</strong> Astrology bookings ↑34% this week. Consider featuring 3 more astrology consultants.</div><button class="btn btn-ghost btn-xs" style="margin-left:auto;" onclick="this.closest('.admin-alert').remove()">Dismiss</button></div>
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-card-label">Total Users</div><div class="stat-card-value">${(12847+STATE.customerSessions.length).toLocaleString()}</div><div class="stat-card-change positive">↑ +284 this week</div></div>
+        <div class="stat-card"><div class="stat-card-label">Active Consultants</div><div class="stat-card-value">${STATE.consultants.filter(c=>c.status==='active').length + 208}</div><div class="stat-card-change neutral">${pending} pending review</div></div>
+        <div class="stat-card"><div class="stat-card-label">Platform Revenue</div><div class="stat-card-value font-serif text-gold">₹2.84L</div><div class="stat-card-change positive">↑ +22% this month</div></div>
+        <div class="stat-card"><div class="stat-card-label">Active Sessions Now</div><div class="stat-card-value text-green">34</div><div class="stat-card-change neutral">Live right now</div></div>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header"><div class="card-title">Category Performance</div></div>
+          <div style="padding:20px;">
+            <div class="bar-chart">
+              ${cats.map(([n,v,col])=>`<div class="bar-row"><div class="bar-label" style="font-size:12px;">${n}</div><div class="bar-track"><div class="bar-fill" style="width:${v/45*100}%;background:${col};"></div></div><div class="bar-val" style="color:${col};font-size:12px;">${v}</div></div>`).join('')}
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="card mb-16">
+            <div class="card-header"><div class="card-title">Platform Health</div></div>
+            <div style="padding:16px 20px;display:flex;flex-direction:column;gap:14px;">
+              ${[['No-show Rate','3.2%',3,'var(--green)','Target: <5% ✓'],['Avg. Rating','4.8 ★',96,'var(--gold)','Target: 4.5+ ✓'],['Utilization','68%',68,'var(--teal)','Target: 75%']].map(([l,v,p,c,n])=>`<div><div class="flex-between" style="margin-bottom:5px;"><span class="text-muted fs-13">${l}</span><span class="fw-700">${v}</span></div><div class="progress-bar"><div class="progress-fill" style="width:${p}%;background:${c};"></div></div><div class="text-muted fs-11" style="margin-top:3px;">${n}</div></div>`).join('')}
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header"><div class="card-title">Pending Actions</div></div>
+            <div style="padding:12px 20px;display:flex;flex-direction:column;gap:10px;">
+              <div class="flex-between"><span class="fs-13">🕐 Consultant approvals</span><button class="badge badge-gold" style="cursor:pointer;" onclick="navigate('a-consultants')">${pending}</button></div>
+              <div class="flex-between"><span class="fs-13">🚨 Support tickets</span><span class="badge badge-red">3</span></div>
+              <div class="flex-between"><span class="fs-13">💰 Pending payouts</span><button class="badge badge-purple" style="cursor:pointer;" onclick="navigate('a-finance')">${STATE.payouts.filter(p=>p.status==='pending').length}</button></div>
+              <div class="flex-between"><span class="fs-13">📋 Refund requests</span><span class="badge badge-muted">2</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>`;
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// ADMIN — CONSULTANTS
+// ═══════════════════════════════════════════════════════════════════
+function pgAdminConsultants(){
+  return `
+    <div class="page-header">
+      <div><div class="page-title">Consultants</div><div class="page-sub">Manage consultant accounts</div></div>
+      <button class="btn btn-primary btn-sm" onclick="toast('📧','Consultant invite email sent!')">+ Invite Consultant</button>
+    </div>
+    <div class="page-body">
+      <div class="stats-grid stats-grid-3 mb-20">
+        <div class="stat-card"><div class="stat-card-label">Total</div><div class="stat-card-value">${STATE.consultants.length + 208}</div></div>
+        <div class="stat-card"><div class="stat-card-label">Pending Review</div><div class="stat-card-value text-gold" id="admin_pending_count">${STATE.adminUsers.filter(u=>u.role==='consultant'&&u.status==='pending').length}</div></div>
+        <div class="stat-card"><div class="stat-card-label">Avg. Rating</div><div class="stat-card-value">4.8 ★</div></div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">All Consultants</div>
+          <input class="form-input" id="admin_cons_search" style="width:220px;padding:8px 12px;font-size:13px;" placeholder="🔍 Search..." oninput="filterAdminCons(this.value)">
+        </div>
+        <div id="admin_cons_table">${renderAdminConsTable('')}</div>
+      </div>
+    </div>`;
+}
+function renderAdminConsTable(q){
+  const rows = STATE.consultants.filter(c=>!q||c.name.toLowerCase().includes(q.toLowerCase())||c.spec.toLowerCase().includes(q.toLowerCase()));
+  // Add pending user
+  const pendingUser = STATE.adminUsers.find(u=>u.role==='consultant'&&u.status==='pending');
+  return `<table class="table">
+    <thead><tr><th>Name</th><th>Category</th><th>Sessions</th><th>Rating</th><th>Status</th><th>Actions</th></tr></thead>
+    <tbody>
+      ${rows.map(c=>`<tr id="con_row_${c.id}">
+        <td><div style="display:flex;align-items:center;gap:10px;"><div class="avatar avatar-sm" style="background:${c.grad};color:${c.tc};">${c.init}</div><div><div class="fw-700 fs-13">${c.name}</div><div class="text-muted fs-11">${c.spec}</div></div></div></td>
+        <td><span class="tag" style="background:var(--surface);color:var(--muted);border:1px solid var(--border);">${c.cat}</span></td>
+        <td class="fw-700 fs-13">${c.sessions.toLocaleString()}</td>
+        <td class="text-gold fw-700">★ ${c.rating}</td>
+        <td id="status_badge_${c.id}"><span class="badge ${c.status==='active'?'badge-green':c.status==='suspended'?'badge-red':'badge-muted'}">${c.status}</span></td>
+        <td><div style="display:flex;gap:5px;"><button class="btn btn-ghost btn-xs" onclick="toast('👀','Viewing full profile of ${c.name}')">View</button><button class="btn btn-danger btn-xs" id="suspend_btn_${c.id}" onclick="toggleSuspend(${c.id})">${c.status==='suspended'?'Unsuspend':'Suspend'}</button></div></td>
+      </tr>`).join('')}
+      ${pendingUser?`<tr id="pending_row">
+        <td><div style="display:flex;align-items:center;gap:10px;"><div class="avatar avatar-sm" style="background:linear-gradient(135deg,#8B5CF6,#A78BFA);color:#fff;">VN</div><div><div class="fw-700 fs-13">${pendingUser.name}</div><div class="text-muted fs-11">${pendingUser.cat}</div></div></div></td>
+        <td><span class="tag" style="background:var(--surface);color:var(--muted);border:1px solid var(--border);">Wellness</span></td>
+        <td class="text-muted fs-13">0</td>
+        <td class="text-muted">New</td>
+        <td id="pending_status"><span class="badge badge-gold">Pending</span></td>
+        <td><div style="display:flex;gap:5px;"><button class="btn btn-success btn-xs" onclick="approveConsultant()">✓ Approve</button><button class="btn btn-danger btn-xs" onclick="rejectConsultant()">✗ Reject</button></div></td>
+      </tr>`:''}
+    </tbody>
+  </table>`;
+}
+function filterAdminCons(q){ const t = document.getElementById('admin_cons_table'); if(t) t.innerHTML = renderAdminConsTable(q); }
+function toggleSuspend(id){
+  const c = STATE.consultants.find(x=>x.id===id);
+  if(!c) return;
+  c.status = c.status === 'suspended' ? 'active' : 'suspended';
+  const badge = document.getElementById('status_badge_'+id);
+  const btn = document.getElementById('suspend_btn_'+id);
+  if(badge) badge.innerHTML = `<span class="badge ${c.status==='active'?'badge-green':'badge-red'}">${c.status}</span>`;
+  if(btn) btn.textContent = c.status==='suspended'?'Unsuspend':'Suspend';
+  navigate(STATE.page);
+  toast(c.status==='suspended'?'🚫':'✅', `${c.name} has been ${c.status==='suspended'?'suspended':'reinstated'}.`);
+}
+function approveConsultant(){
+  const u = STATE.adminUsers.find(x=>x.role==='consultant'&&x.status==='pending');
+  if(u){ u.status='active'; navigate(STATE.page); toast('✅','Vikram Nair approved! Welcome email sent.'); }
+}
+function rejectConsultant(){
+  const u = STATE.adminUsers.find(x=>x.role==='consultant'&&x.status==='pending');
+  if(u){ STATE.adminUsers.splice(STATE.adminUsers.indexOf(u),1); navigate(STATE.page); toast('❌','Application rejected. Notification sent.'); }
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// ADMIN — CUSTOMERS
+// ═══════════════════════════════════════════════════════════════════
+function pgAdminCustomers(){
+  const customers = STATE.adminUsers.filter(u=>u.role==='customer').concat([
+    {id:9,name:'Kavya Patel',email:'kavya@mail.com',role:'customer',joined:'Feb 10, 2026',status:'active',sessions:6,plan:'free'},
+    {id:10,name:'Nisha Rao',email:'nisha@mail.com',role:'customer',joined:'Jan 28, 2026',status:'active',sessions:11,plan:'pro'},
+  ]);
+  return `
+    <div class="page-header">
+      <div><div class="page-title">Customers</div><div class="page-sub">All registered users</div></div>
+      <button class="btn btn-ghost btn-sm" onclick="toast('📧','Bulk email composer opened...')">📧 Bulk Email</button>
+    </div>
+    <div class="page-body">
+      <div class="stats-grid stats-grid-3 mb-20">
+        <div class="stat-card"><div class="stat-card-label">Total Customers</div><div class="stat-card-value">12,633</div></div>
+        <div class="stat-card"><div class="stat-card-label">Pro Subscribers</div><div class="stat-card-value text-gold">3,840</div></div>
+        <div class="stat-card"><div class="stat-card-label">Avg Sessions</div><div class="stat-card-value">8.4</div></div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Customer List</div>
+          <input class="form-input" id="admin_cust_search" style="width:200px;padding:8px 12px;font-size:13px;" placeholder="🔍 Search..." oninput="filterAdminCusts(this.value)">
+        </div>
+        <div id="admin_cust_table">${renderAdminCustTable(customers,'')}</div>
+      </div>
+    </div>`;
+}
+function renderAdminCustTable(customers, q){
+  const filtered = q ? customers.filter(u=>u.name.toLowerCase().includes(q)||u.email.toLowerCase().includes(q)) : customers;
+  return `<table class="table">
+    <thead><tr><th>Name</th><th>Email</th><th>Sessions</th><th>Joined</th><th>Plan</th><th>Status</th><th>Actions</th></tr></thead>
+    <tbody>${filtered.map(u=>`<tr id="cust_row_${u.id}">
+      <td class="fw-700 fs-13">${u.name}</td>
+      <td class="text-muted fs-13">${u.email}</td>
+      <td class="fw-700 fs-13">${u.sessions}</td>
+      <td class="text-muted fs-13">${u.joined}</td>
+      <td><span class="badge ${u.plan==='pro'?'badge-gold':'badge-muted'}">${u.plan||'free'}</span></td>
+      <td id="cust_status_${u.id}"><span class="badge ${u.status==='active'?'badge-green':u.status==='suspended'?'badge-red':'badge-muted'}">${u.status}</span></td>
+      <td><div style="display:flex;gap:5px;"><button class="btn btn-ghost btn-xs" onclick="toast('👀','User detail view...')">View</button><button class="btn btn-danger btn-xs" onclick="toggleCustStatus(${u.id},this)">${u.status==='suspended'?'Unsuspend':'Suspend'}</button></div></td>
+    </tr>`).join('')}</tbody>
+  </table>`;
+}
+function filterAdminCusts(q){
+  const customers = STATE.adminUsers.filter(u=>u.role==='customer');
+  const t = document.getElementById('admin_cust_table'); if(t) t.innerHTML = renderAdminCustTable(customers, q);
+}
+function toggleCustStatus(id, btn){
+  const u = STATE.adminUsers.find(x=>x.id===id);
+  if(!u) return;
+  u.status = u.status==='suspended'?'active':'suspended';
+  const badge = document.getElementById('cust_status_'+id);
+  if(badge) badge.innerHTML = `<span class="badge ${u.status==='active'?'badge-green':'badge-red'}">${u.status}</span>`;
+  if(btn) btn.textContent = u.status==='suspended'?'Unsuspend':'Suspend';
+  toast(u.status==='suspended'?'🚫':'✅',`User ${u.status==='suspended'?'suspended':'reinstated'} successfully.`);
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// ADMIN — CATEGORIES
+// ═══════════════════════════════════════════════════════════════════
+function pgAdminCategories(){
+  return `
+    <div class="page-header">
+      <div><div class="page-title">Categories</div><div class="page-sub">Manage consultation categories</div></div>
+      <button class="btn btn-primary btn-sm" onclick="toggleCatForm()">+ New Category</button>
+    </div>
+    <div class="page-body">
+      <div class="inline-form ${STATE.newCategoryForm?'':'hidden'}" id="new_cat_form">
+        <div style="font-size:14px;font-weight:700;margin-bottom:14px;">Add New Category</div>
+        <div class="grid-2" style="gap:12px;">
+          <div class="form-group" style="margin:0;"><label class="form-label">Category Name</label><input class="form-input" id="new_cat_name" placeholder="e.g. Mental Health – Anxiety Support"></div>
+          <div class="form-group" style="margin:0;"><label class="form-label">Icon (emoji)</label><input class="form-input" id="new_cat_icon" placeholder="🧠" maxlength="2"></div>
+        </div>
+        <div style="display:flex;gap:8px;margin-top:12px;">
+          <button class="btn btn-primary btn-sm" onclick="addCategory()">Create Category</button>
+          <button class="btn btn-ghost btn-sm" onclick="toggleCatForm()">Cancel</button>
+        </div>
+      </div>
+      <div class="grid-3 mb-20" id="cat_cards">
+        ${renderCatCards()}
+      </div>
+    </div>`;
+}
+function renderCatCards(){
+  return STATE.categories.map(c=>`
+    <div class="card" style="padding:20px;" id="cat_card_${c.id}">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
+        <div style="width:40px;height:40px;border-radius:10px;background:${c.color}22;display:flex;align-items:center;justify-content:center;font-size:20px;">${c.icon}</div>
+        <div><div class="fw-700 fs-14">${c.name}</div><div class="text-muted fs-12">${c.count} consultants</div></div>
+      </div>
+      <div class="flex-between">
+        <span id="cat_status_${c.id}" class="badge ${c.active?'badge-green':'badge-muted'}">${c.active?'Active':'Archived'}</span>
+        <div style="display:flex;gap:4px;">
+          <button class="btn btn-ghost btn-xs" onclick="editCategory(${c.id})">Edit</button>
+          <button class="btn btn-danger btn-xs" onclick="toggleCatStatus(${c.id})">${c.active?'Archive':'Restore'}</button>
+        </div>
+      </div>
+    </div>`).join('');
+}
+function toggleCatForm(){ STATE.newCategoryForm = !STATE.newCategoryForm; navigate(STATE.page); }
+function addCategory(){
+  const name = document.getElementById('new_cat_name')?.value?.trim();
+  const icon = document.getElementById('new_cat_icon')?.value?.trim() || '📌';
+  if(!name){ toast('⚠️','Please enter a category name.'); return; }
+  const colors = ['#E8A838','#2DD4BF','#8B5CF6','#34D399','#E06B45'];
+  STATE.categories.push({id:Date.now(),name,icon,count:0,color:colors[STATE.categories.length%colors.length],active:true});
+  STATE.newCategoryForm = false;
+  navigate(STATE.page);
+  toast('✅',`Category "${name}" created successfully!`);
+}
+function editCategory(id){
+  const c = STATE.categories.find(x=>x.id===id);
+  if(c){ const n = prompt(`Edit name for "${c.name}":`, c.name); if(n){ c.name = n; navigate(STATE.page); toast('💾','Category updated!'); } }
+}
+function toggleCatStatus(id){
+  const c = STATE.categories.find(x=>x.id===id);
+  if(!c) return;
+  c.active = !c.active;
+  const badge = document.getElementById('cat_status_'+id);
+  if(badge){ badge.className = `badge ${c.active?'badge-green':'badge-muted'}`; badge.textContent = c.active?'Active':'Archived'; }
+  toast(c.active?'✅':'📦', `Category ${c.active?'restored':'archived'}.`);
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// ADMIN — FINANCE
+// ═══════════════════════════════════════════════════════════════════
+function pgAdminFinance(){
+  return `
+    <div class="page-header">
+      <div><div class="page-title">Finance</div><div class="page-sub">Revenue, payouts & commissions</div></div>
+      <button class="btn btn-primary btn-sm" onclick="processAllPayouts()">Process All Payouts</button>
+    </div>
+    <div class="page-body">
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-card-label">Revenue (Mar)</div><div class="stat-card-value font-serif text-gold">₹2.84L</div><div class="stat-card-change positive">↑ +22%</div></div>
+        <div class="stat-card"><div class="stat-card-label">Platform Commission</div><div class="stat-card-value font-serif text-green">₹42,600</div><div class="stat-card-change neutral">15% avg</div></div>
+        <div class="stat-card"><div class="stat-card-label">Pending Payouts</div><div class="stat-card-value text-gold" id="payout_total">₹${STATE.payouts.filter(p=>p.status==='pending').reduce((a,p)=>a+p.amount,0).toLocaleString()}</div><div class="stat-card-change neutral">${STATE.payouts.filter(p=>p.status==='pending').length} consultants</div></div>
+        <div class="stat-card"><div class="stat-card-label">Refunds Issued</div><div class="stat-card-value text-red">₹4,800</div><div class="stat-card-change neutral">6 this month</div></div>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header"><div class="card-title">Pending Payouts</div></div>
+          <div id="payouts_table">
+            ${renderPayoutsTable()}
+          </div>
+        </div>
+        <div>
+          <div class="card mb-16">
+            <div class="card-header"><div class="card-title">Commission Settings</div></div>
+            <div style="padding:20px;display:flex;flex-direction:column;gap:12px;">
+              <div class="form-group" style="margin:0;"><label class="form-label">Default Commission Rate</label><input class="form-input" id="comm_default" value="15%"></div>
+              <div class="form-group" style="margin:0;"><label class="form-label">Premium Consultant Rate</label><input class="form-input" id="comm_premium" value="12%"></div>
+              <div class="form-group" style="margin:0;"><label class="form-label">New Consultant Rate (3 months)</label><input class="form-input" id="comm_new" value="10%"></div>
+              <button class="btn btn-primary btn-sm" style="justify-content:center;" onclick="saveCommissions()">Save Settings</button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header"><div class="card-title">Refund Requests</div></div>
+            <div style="padding:0 16px;">
+              ${[{u:'Priya P.',a:700,r:'No-show',s:'approved'},{u:'Karan M.',a:800,r:'Technical issue',s:'approved'},{u:'Sneha T.',a:600,r:'Disputed',s:'pending'}].map(r=>`<div class="flex-between" style="padding:10px 0;border-bottom:1px solid var(--border);"><div><div class="fw-700 fs-13">${r.u}</div><div class="text-muted fs-11">${r.r}</div></div><div style="text-align:right;display:flex;gap:8px;align-items:center;"><div class="text-red fw-700 font-serif">−₹${r.a}</div>${r.s==='pending'?`<button class="btn btn-success btn-xs" onclick="toast('✅','Refund of ₹${r.a} approved')">Approve</button>`:`<span class="badge badge-green">Approved</span>`}</div></div>`).join('')}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>`;
+}
+function renderPayoutsTable(){
+  return `<table class="table">
+    <thead><tr><th>Consultant</th><th>Amount</th><th>Sessions</th><th>Status</th><th>Action</th></tr></thead>
+    <tbody>${STATE.payouts.map((p,i)=>`<tr id="payout_row_${i}">
+      <td><div style="display:flex;align-items:center;gap:8px;"><div class="avatar avatar-sm" style="background:${p.grad};color:${p.tc};">${p.init}</div><span class="fw-700 fs-13">${p.name}</span></div></td>
+      <td class="font-serif fw-700 text-green">₹${p.amount.toLocaleString()}</td>
+      <td class="text-muted fs-13">${p.sessions}</td>
+      <td id="payout_status_${i}"><span class="badge ${p.status==='paid'?'badge-green':'badge-gold'}">${p.status}</span></td>
+      <td>${p.status==='pending'?`<button class="btn btn-primary btn-xs" onclick="payOut(${i})">Pay Now</button>`:`<span class="text-muted fs-12">Paid ✓</span>`}</td>
+    </tr>`).join('')}</tbody>
+  </table>`;
+}
+function payOut(i){
+  STATE.payouts[i].status = 'paid';
+  const row = document.getElementById('payout_row_'+i);
+  if(row){
+    const statusEl = document.getElementById('payout_status_'+i);
+    if(statusEl) statusEl.innerHTML = `<span class="badge badge-green">paid</span>`;
+    row.querySelector('td:last-child').innerHTML = `<span class="text-muted fs-12">Paid ✓</span>`;
+  }
+  const total = document.getElementById('payout_total');
+  if(total){ const pending = STATE.payouts.filter(p=>p.status==='pending').reduce((a,p)=>a+p.amount,0); total.textContent = `₹${pending.toLocaleString()}`; }
+  toast('💳',`₹${STATE.payouts[i].amount.toLocaleString()} paid out via Razorpay!`);
+}
+function processAllPayouts(){
+  STATE.payouts.forEach(p=>p.status='paid');
+  navigate(STATE.page);
+  toast('💳','All payouts processed via Razorpay!');
+}
+function saveCommissions(){ toast('💾','Commission settings saved!'); }
+
+// ═══════════════════════════════════════════════════════════════════
+// ADMIN — REPORTS
+// ═══════════════════════════════════════════════════════════════════
+function pgAdminReports(){
+  const rev=[['Oct 25',180000],['Nov 25',210000],['Dec 25',240000],['Jan 26',220000],['Feb 26',260000],['Mar 26',284000]];
+  const users=[['Oct 25',4200],['Nov 25',6800],['Dec 25',8100],['Jan 26',9400],['Feb 26',11200],['Mar 26',12847]];
+  const maxR=284000, maxU=12847;
+  return `
+    <div class="page-header">
+      <div><div class="page-title">Reports & Analytics</div><div class="page-sub">AI-powered platform insights</div></div>
+      <div style="display:flex;gap:8px;">
+        <select class="form-input" style="width:140px;padding:8px 12px;font-size:13px;"><option>March 2026</option><option>February 2026</option><option>Q1 2026</option></select>
+        <button class="btn btn-primary btn-sm" onclick="toast('📊','PDF report generated!')">Export PDF</button>
+      </div>
+    </div>
+    <div class="page-body">
+      <div class="admin-alert"><span style="font-size:18px;">✨</span><div class="fs-14"><strong class="text-gold">AI Prediction:</strong> On track for <strong>₹8.4L revenue</strong> in Q1. Boost astrology & nutrition promotions to maximize.</div></div>
+      <div class="grid-2 mb-20">
+        <div class="card">
+          <div class="card-header"><div class="card-title">Monthly Revenue</div></div>
+          <div style="padding:20px;"><div class="bar-chart">${rev.map(([m,v])=>`<div class="bar-row"><div class="bar-label fs-12">${m}</div><div class="bar-track"><div class="bar-fill" style="width:${v/maxR*100}%;background:${m==='Mar 26'?'var(--gold)':'var(--border2)'}"></div></div><div class="bar-val fs-11 ${m==='Mar 26'?'text-gold':'text-muted'}">₹${(v/1000).toFixed(0)}K</div></div>`).join('')}</div></div>
+        </div>
+        <div class="card">
+          <div class="card-header"><div class="card-title">User Growth</div></div>
+          <div style="padding:20px;"><div class="bar-chart">${users.map(([m,v])=>`<div class="bar-row"><div class="bar-label fs-12">${m}</div><div class="bar-track"><div class="bar-fill" style="width:${v/maxU*100}%;background:${m==='Mar 26'?'var(--teal)':'var(--border2)'}"></div></div><div class="bar-val fs-11 ${m==='Mar 26'?'text-teal':'text-muted'}">${(v/1000).toFixed(1)}K</div></div>`).join('')}</div></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-title">Key Performance Indicators</div></div>
+        <table class="table">
+          <thead><tr><th>Metric</th><th>Current</th><th>Target</th><th>Status</th><th>Trend</th></tr></thead>
+          <tbody>${[
+            ['No-show Rate','3.2%','< 5%','Met','↓ Improving'],
+            ['Avg Session Rating','4.8 ★','4.5+','Met','→ Stable'],
+            ['Consultant Utilization','68%','75%','Near','↑ Improving'],
+            ['Customer Retention (30d)','71%','70%','Met','↑ On track'],
+            ['Avg Response Time','4.2 min','< 5 min','Met','→ Stable'],
+            ['Platform Uptime','99.94%','99.9%','Met','✓ Excellent'],
+          ].map(([m,c,t,s,tr])=>`<tr><td class="fw-700 fs-13">${m}</td><td class="fw-700">${c}</td><td class="text-muted fs-13">${t}</td><td><span class="badge ${s==='Met'?'badge-green':'badge-gold'}">${s}</span></td><td class="text-green fs-13">${tr}</td></tr>`).join('')}</tbody>
+        </table>
+      </div>
+    </div>`;
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// BOOKING FLOW
+// ═══════════════════════════════════════════════════════════════════
+function openBooking(consId){
+  const c = STATE.consultants.find(x=>x.id===consId);
+  if(!c) return;
+  STATE.bookingCons = c;
+  STATE.selectedSlot = '4:00 PM';
+  document.getElementById('bk_sub').textContent = `${c.spec} • ${c.subcat}`;
+  document.getElementById('bk_avatar').textContent = c.init;
+  document.getElementById('bk_avatar').style.background = c.grad;
+  document.getElementById('bk_avatar').style.color = c.tc;
+  document.getElementById('bk_name').textContent = c.name;
+  document.getElementById('bk_cat').textContent = c.spec;
+  document.getElementById('bk_rating').textContent = `${c.rating} · ${c.reviews} sessions`;
+  document.getElementById('bk_fee').textContent = `₹${c.rate}`;
+  document.getElementById('bk_total').textContent = `₹${c.rate}`;
+  const d = new Date();
+  document.getElementById('bk_date').valueAsDate = d;
+  // Render slots
+  const slots = ['9:00 AM','10:30 AM','12:00 PM','2:00 PM','3:30 PM','4:00 PM','5:30 PM','7:00 PM'];
+  const bookedSlots = ['10:30 AM','3:30 PM'];
+  document.getElementById('bk_slots').innerHTML = slots.map(s=>{
+    const isBooked = bookedSlots.includes(s);
+    const isSelected = s === STATE.selectedSlot;
+    return `<button class="slot-btn ${isBooked?'booked':''} ${isSelected?'selected':''}" ${isBooked?'disabled':''} onclick="selectSlot('${s}',this)">${s}</button>`;
+  }).join('');
+  document.getElementById('bookingModal').classList.remove('hidden');
+}
+function selectSlot(slot, btn){
+  STATE.selectedSlot = slot;
+  document.querySelectorAll('.slot-btn').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+}
+function confirmBooking(){
+  if(!STATE.selectedSlot){ toast('⚠️','Please select a time slot.'); return; }
+  const c = STATE.bookingCons;
+  const btn = document.getElementById('bk_confirm');
+  btn.disabled = true; btn.textContent = 'Processing...';
+  setTimeout(()=>{
+    const dateStr = document.getElementById('bk_date').value;
+    const date = new Date(dateStr);
+    const dateLabel = date.toLocaleDateString('en-IN',{month:'short',day:'numeric',year:'numeric'});
+    const type = document.getElementById('bk_type').value;
+    const newSession = { id: Date.now(), consId: c.id, date: dateLabel, time: STATE.selectedSlot, status: 'upcoming', topic: document.getElementById('bk_notes').value || 'Consultation', type, fee: c.rate, reviewed: false };
+    STATE.customerSessions.unshift(newSession);
+    closeModal('bookingModal');
+    btn.disabled = false; btn.textContent = 'Confirm & Pay →';
+    toast('🎉',`Session with ${c.name} booked for ${STATE.selectedSlot}!`);
+    navigate('c-sessions');
+  }, 900);
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// REVIEW FLOW
+// ═══════════════════════════════════════════════════════════════════
+function openReview(sessionId){
+  STATE.reviewingSessionId = sessionId;
+  STATE.selectedRating = 0;
+  const s = STATE.customerSessions.find(x=>x.id===sessionId);
+  const c = s ? STATE.consultants.find(x=>x.id===s.consId) : null;
+  document.getElementById('rev_sub').textContent = c ? `Rate your session with ${c.name}` : 'How was your session?';
+  for(let i=1;i<=5;i++) document.getElementById('s'+i).textContent = '☆';
+  document.getElementById('rev_text').value = '';
+  document.getElementById('reviewModal').classList.remove('hidden');
+}
+function setRating(r){
+  STATE.selectedRating = r;
+  for(let i=1;i<=5;i++) document.getElementById('s'+i).textContent = i<=r ? '★' : '☆';
+  for(let i=1;i<=5;i++) document.getElementById('s'+i).style.color = i<=r ? 'var(--gold)' : 'var(--muted)';
+}
+function submitReview(){
+  if(!STATE.selectedRating){ toast('⭐','Please select a star rating.'); return; }
+  const s = STATE.customerSessions.find(x=>x.id===STATE.reviewingSessionId);
+  if(s){ s.reviewed = true; s.rating = STATE.selectedRating; }
+  closeModal('reviewModal');
+  toast('⭐',`${STATE.selectedRating}-star review submitted! Thank you.`);
+  navigate('c-sessions');
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// UTILITIES
+// ═══════════════════════════════════════════════════════════════════
+function closeModal(id){ document.getElementById(id)?.classList.add('hidden'); }
+function scrollChat(id){ const el=document.getElementById(id); if(el){ el.scrollTop=el.scrollHeight; } }
+function now(){ return new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}); }
+function smoothScroll(id){ document.getElementById(id)?.scrollIntoView({behavior:'smooth'}); }
+function scrollTop(){ window.scrollTo({top:0,behavior:'smooth'}); }
+let toastTimer;
+function toast(icon, msg){
+  document.getElementById('toast_icon').textContent = icon;
+  document.getElementById('toast_msg').textContent = msg;
+  document.getElementById('toast').classList.remove('hidden');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>document.getElementById('toast').classList.add('hidden'), 3500);
+}
+
+// Close modals on overlay click
+['authModal','bookingModal','reviewModal'].forEach(id=>{
+  document.getElementById(id)?.addEventListener('click',function(e){ if(e.target===this) closeModal(id); });
+});
+
+// Set default booking date
+window.addEventListener('load',()=>{
+  const d = new Date();
+  const inp = document.getElementById('bk_date');
+  if(inp) inp.valueAsDate = d;
+});
+</script>
+</body>
+</html>
